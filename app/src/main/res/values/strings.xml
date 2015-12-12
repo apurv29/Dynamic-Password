@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">NumericalPass</string>
+    <string name="action_settings">Settings</string>
+    <string name="exit">Exit</string>
+    <string name="one">a</string>
+    <string name="two">b</string>
+    <string name="tree">c</string>
+    <string name="four">d</string>
+    <string name="five">e</string>
+    <string name="six">f</string>
+    <string name="seven">g</string>
+    <string name="eight">h</string>
+    <string name="nihen">i</string>
+    <string name="zero">j</string>
+    <string name="pl">+</string>
+    <string name="mi">-</string>
+    <string name="mu">*</string>
+    <string name="div">/</string>
+    <string name="dot">.</string>
+    <string name="C">Clr</string>
+    <string name="openb">(</string>
+    <string name="closeb">)</string>
+    <string name="mod">%</string>
+    <string name="equal">SET</string>
+    <string name="done">Done</string>
+    <string name="ans" />
+    <string name="tv" />
+    <string name="tv1" />
+    <string name="tv2" />
+     <string name="tv3" />
+      <string name="textv" />
+    <string name="et1" />
+    <string name="button1" />
+    <string name="button2" />
+    <string name="textview" />
+    <string name="edittext" />
+    <string name="title_activity_reg">RegActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>

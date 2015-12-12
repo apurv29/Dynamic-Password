@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+            android:layout_height="84dip"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="2"
+            android:text="@string/tv"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+            android:layout_height="84dip"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="2"
+            android:text="@string/tv1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+        />
+   
+     <EditText 
+         android:id="@+id/et1"
+        android:layout_width="fill_parent"
+            android:layout_height="84dip"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="2"
+            android:text="@string/et1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+         />
+
+     <Button
+         android:id="@+id/button1"
+         android:layout_width="108dp"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.96"
+         android:text="Submit" />
+
+     <Button
+         android:id="@+id/button2"
+         android:layout_width="109dp"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.97"
+         android:text="Confirm" />
+    
+</LinearLayout>
