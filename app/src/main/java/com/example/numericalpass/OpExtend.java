@@ -11,34 +11,16 @@ public class OpExtend extends Operator {
 		super(symbol, numberOfOperands, leftAssociative, precedence);
 		// TODO Auto-generated constructor stub
 	}
-	/*Operator factorial = new Operator("!", 1, true, Operator.PRECEDENCE_POWER + 1) {
-
-	    @Override
-	    public double apply(double... args) {
-	        final int arg = (int) args[0];
-	        if ((double) arg != args[0]) {
-	            throw new IllegalArgumentException("Operand for factorial has to be an integer");
-	        }
-	        if (arg < 0) {
-	            throw new IllegalArgumentException("The operand of the factorial can not be less than zero");
-	        }
-	        double resultfac = 1;
-	        for (int i = 1; i <= arg; i++) {
-	            resultfac *= i;
-	        }
-	        return resultfac;
-	    }
-	};
-	*/
+	
 	Operator div = new Operator("\u00F7", 2, true, Operator.PRECEDENCE_DIVISION) {
 
 	    @Override
 	    public double apply(double... args) {
-	        final int arg1 = (int) args[0];
-	        final int arg2 = (int) args[1];
-	        if ((double) arg1 != args[0] && (double) arg2 != args[1]) {
+	        final double arg1 = args[0];
+	        final double arg2 = args[1];
+	       /* if ((double) arg1 != args[0] && (double) arg2 != args[1]) {
 	            throw new IllegalArgumentException("Operand for division has to be an integer");
-	        }
+	        }*/
 	        if (arg2 == 0) {
 	            throw new IllegalArgumentException("The operand of the division can not be equal to zero");
 	        }
@@ -51,11 +33,11 @@ public class OpExtend extends Operator {
 
 	    @Override
 	    public double apply(double... args) {
-	        final int arg1 = (int) args[0];
-	        final int arg2 = (int) args[1];
-	        if ((double) arg1 != args[0] && (double) arg2 != args[1]) {
+	        final double arg1 = args[0];
+	        final double arg2 =  args[1];
+	      /*  if ((double) arg1 != args[0] && (double) arg2 != args[1]) {
 	            throw new IllegalArgumentException("Operand for division has to be an integer");
-	        }
+	        }*/
 	        if (arg2 == 0 || arg1 == 0) {
 	            //throw new IllegalArgumentException("The operand of the division can not be equal to zero");
 	        	return 0.0;
@@ -68,7 +50,7 @@ public class OpExtend extends Operator {
 
 	    @Override
 	    public double apply(double... args) {
-	        final int arg1 = (int) args[0];
+	        final double arg1 = args[0];
 	       // final int arg2 = (int) args[1];
 	      /*  if ((double) arg1 != args[0] && (double) arg2 != args[1]) {
 	            throw new IllegalArgumentException("Operand for division has to be an integer");
@@ -81,23 +63,7 @@ public class OpExtend extends Operator {
 	        return resultsqroot;
 	    }
 	};
-	Operator pi = new Operator("\u03C0", 1, true, Operator.PRECEDENCE_POWER-1) {
-
-	    @Override
-	    public double apply(double... args) {
-	      //  final int arg1 = (int) args[0];
-	       // final int arg2 = (int) args[1];
-	      /*  if ((double) arg1 != args[0] && (double) arg2 != args[1]) {
-	            throw new IllegalArgumentException("Operand for division has to be an integer");
-	        }
-	        if (arg1 < 0) {
-	            //throw new IllegalArgumentException("The operand of the division can not be equal to zero");
-	        	return 0.0;
-	        }*/
-	       double resultpi = Math.PI;
-	        return resultpi;
-	    }
-	};
+	
 
 /*	double resultdiv = new ExpressionBuilder("3\u00F72")
 	        .operator(div)

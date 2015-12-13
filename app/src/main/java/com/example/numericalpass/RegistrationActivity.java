@@ -1,33 +1,25 @@
 package com.example.numericalpass;
-import java.lang.reflect.Array;
+
 import java.util.Arrays;
 
-
-
-
-
-
-
-
-import android.R.array;
 import android.app.Activity;
 import android.os.Bundle;
-import android.content.Context;
+
 import android.content.Intent;
-import android.database.Cursor;
+
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class RegistrationActivity extends Activity implements OnClickListener{
 
-	String s,s1,str,sfinalvar;
+	String stringform,sfinalvar;
 	Double ans;
 	Integer ans1;
 	String temp ="";
@@ -48,10 +40,10 @@ public class RegistrationActivity extends Activity implements OnClickListener{
         
         i=getIntent();
         
-   	 s = i.getStringExtra("c");
+   	 stringform = i.getStringExtra("c");
    	 ip=getIntent();
     
-	 sfinalvar = ip.getStringExtra("yo");
+	 sfinalvar = ip.getStringExtra("getstring");
    	 ianswer=getIntent();
 	 ans= ianswer.getDoubleExtra("result", 0.0);
 	 
@@ -65,12 +57,12 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 	
    	Bundle extras = getIntent().getExtras();
     char[] myArr= extras.getCharArray("something");
-    char[] myArr1= extras.getCharArray("values");
+   
    
 
     Log.d("RegistrationActivity", "Received Array from intent"+ Arrays.toString(myArr));
    	tv=(TextView)findViewById(R.id.tv);
-   	tv.setText("Test your Formula:  " + s);
+   	tv.setText("Test your Formula:  " + stringform);
    
    
    	tv1=(TextView)findViewById(R.id.tv1);
@@ -83,38 +75,7 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 
    	
    
-	
-/*	button1.setOnClickListener(new View.OnClickListener() {
-		@ Override
-        public void onClick(View v) {
-			
-			
-			if(et1.getText().toString().equals(ans.toString()) || et1.getText().toString().equals(ans1.toString())) {
-				
-				Toast.makeText(getApplicationContext(),"You are right", Toast.LENGTH_SHORT).show();
-				
-			}
-			else
-				Toast.makeText(getApplicationContext(),"Let's try again!!", Toast.LENGTH_SHORT).show();
-		
 
-        }
-		
-    });
-	
-	
-	/*button2.setOnClickListener(new View.OnClickListener() {
-		@ Override
-        public void onClick(View v) {
-			
-			Toast.makeText(getApplicationContext(),"confirm", Toast.LENGTH_SHORT).show();
-			
-		
-
-        }
-		
-    });
-	*/
     
 
 	}	
@@ -138,7 +99,7 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 			Toast.makeText(getApplicationContext(),"confirm", Toast.LENGTH_SHORT).show();
 			Intent setintent = new Intent();
 	      	  setintent.setClass(RegistrationActivity.this, ConfirmationActivity.class);
-	      	 setintent.putExtra("confirmstring",s);
+	      	 setintent.putExtra("confirmstring",stringform);
 	      	 startActivity(setintent);
 		}
 		if(flag == false){
@@ -147,20 +108,10 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 		}
 		}
 	}
-		/*(et1.getText().toString().equals(ans.toString()) || et1.getText().toString().equals(ans1.toString())) {
-			
-			
-
-			
-		}
-		else
-			Toast.makeText(getApplicationContext(),"Let's try again!!", Toast.LENGTH_SHORT).show();*/
-	
-
-  //  }*/
+		
 	@Override
 	public void onBackPressed() {
-	   Log.d("CDA", "onBackPressed Called");
+	   Log.d("backButton", "onBackPressed Called");
 	  Intent setIntent = new Intent(RegistrationActivity.this, Activitytest.class);
 	  setIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	   
