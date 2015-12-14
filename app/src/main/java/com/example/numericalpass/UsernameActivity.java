@@ -39,13 +39,18 @@ public class UsernameActivity extends ActionBarActivity {
                 // db.addUsername(user);
 
                 // DatabaseHelper db = new DatabaseHelper(Context);
-                if (db.getUserByName(u)) {
+                if (!(db.getUserByName(u))) {
                     Intent intent = new Intent();
                     intent.setClass(UsernameActivity.this, Activitytest.class);
                     intent.putExtra("usern", u);
                     startActivity(intent);
-                } else
+                } else {
                     Toast.makeText(getApplicationContext(), "Login!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                    intent.setClass(UsernameActivity.this, LoginActivity.class);
+                    intent.putExtra("usern", u);
+                    startActivity(intent);
+                }
             }
         });
     }

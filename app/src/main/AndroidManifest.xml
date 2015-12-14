@@ -35,6 +35,14 @@
                 android:value="com.example.numericalpass.UsernameActivity" />
         </activity>
         <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".UsernameActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.numericalpass.UsernameActivity" />
+        </activity>
+        <activity
             android:name=".RegistrationActivity"
             android:label="@string/app_name"
             android:parentActivityName=".Activitytest">
@@ -58,9 +66,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.numericalpass.Activitytest" />
         </activity>
-        <activity
-            android:name=".DatabaseHelper"
-            android:label="@string/title_activity_database_helper"></activity>
+
     </application>
 
 </manifest>

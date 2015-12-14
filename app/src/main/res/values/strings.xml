@@ -37,10 +37,16 @@
     <string name="textview" />
     <string name="edittext" />
     <string name="username" />
+    <string name="tvlogin" />
+    <string name="tv1login" />
+    <string name="etlogin" />
+    <string name="blogin" />
+
     <string name="bcontinue">Continue</string>
     <string name="title_activity_reg">RegActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_username">UsernameActivity</string>
     <string name="title_activity_database_helper">DatabaseHelper</string>
+    <string name="title_activity_login">LoginActivity</string>
 
 </resources>

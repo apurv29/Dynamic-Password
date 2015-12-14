@@ -118,4 +118,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+
+    public String getPassByName(String username){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NUMPIN, new String[] { KEY_ID,
+                        KEY_USERNAME, KEY_PASSWORD }, KEY_USERNAME + "=?",
+                new String[] { username }, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        String pass = new String((cursor.getString(2)));
+        //System.out.println("usern db: "+ usern);
+        // return contact
+        return pass;
+
+    }
 }
