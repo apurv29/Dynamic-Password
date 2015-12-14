@@ -25,7 +25,8 @@ public class Activitytest extends Activity{
 	String u = "";
 	boolean checkisvalid = false;
 	boolean gone = true;
-	
+	Intent iusern;
+	String str_usern;
 	int num, lenother, result2;;
 	int count = 0;
 
@@ -38,8 +39,10 @@ double resultdiv,resultmul,resultsqroot,result1,res;
         setContentView(R.layout.first_layout);
         bdone=(Button) findViewById(R.id.bdone);
         edittext = (EditText) findViewById(R.id.edittext);
-      
-       
+
+		iusern=getIntent();
+
+		str_usern = iusern.getStringExtra("usern");
 	   
 	
 	bdone.setOnClickListener(new View.OnClickListener() {
@@ -289,12 +292,14 @@ double resultdiv,resultmul,resultsqroot,result1,res;
 				           	 if(checkisvalid == true){
 				           		result2 = (int)result1;
 				      	          Intent setintent = new Intent();
-				      	      	  setintent.setClass(Activitytest.this, RegistrationActivity.class);
+								 setintent.setClass(Activitytest.this, RegistrationActivity.class);
 				      	      	 setintent.putExtra("c",str);
 				      	      	 setintent.putExtra("something", arrayvariables);
 				      	      	setintent.putExtra("values", temp);
 				      	      	setintent.putExtra("result", result1);
 				      	      setintent.putExtra("result2", result2);
+								 setintent.putExtra("usern", str_usern);
+
 				      	  
 				      	      int templen = temp.length;
 				      	      for(int p=0; p<= templen-1; p++){

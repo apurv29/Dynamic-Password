@@ -19,11 +19,11 @@ import android.widget.Toast;
 
 public class RegistrationActivity extends Activity implements OnClickListener{
 
-	String stringform,sfinalvar;
+	String stringform,sfinalvar,str_usern;
 	Double ans;
 	Integer ans1;
 	String temp ="";
-	Intent i,ianswer,ianswer1,ip;
+	Intent i,ianswer,ianswer1,ip,iusern;
 	
 	TextView tv,tv1;
 	EditText et1;
@@ -37,7 +37,8 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.testform);
-        
+        iusern=getIntent();
+		str_usern = iusern.getStringExtra("usern");
         i=getIntent();
         
    	 stringform = i.getStringExtra("c");
@@ -100,6 +101,7 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 			Intent setintent = new Intent();
 	      	  setintent.setClass(RegistrationActivity.this, ConfirmationActivity.class);
 	      	 setintent.putExtra("confirmstring",stringform);
+			setintent.putExtra("usern", str_usern);
 	      	 startActivity(setintent);
 		}
 		if(flag == false){

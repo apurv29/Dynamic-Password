@@ -52,18 +52,8 @@ public class MainActivity extends Activity implements OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       
-        b1=(Button) findViewById(R.id.b1);
-        b2=(Button) findViewById(R.id.b2);
-        b3=(Button) findViewById(R.id.b3);
-        b4=(Button) findViewById(R.id.b4);
-        b5=(Button) findViewById(R.id.b5);
-        b6=(Button) findViewById(R.id.b6);
-        b7=(Button) findViewById(R.id.b7);
-        b8=(Button) findViewById(R.id.b8);
-        b9=(Button) findViewById(R.id.b9);
-        b0=(Button) findViewById(R.id.b0);
-        
+
+
         
         bclr=(Button) findViewById(R.id.bclr);
         bdiv=(Button) findViewById(R.id.bdiv);

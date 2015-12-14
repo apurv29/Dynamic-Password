@@ -29,14 +29,18 @@
     <string name="tv" />
     <string name="tv1" />
     <string name="tv2" />
-     <string name="tv3" />
-      <string name="textv" />
+    <string name="tv3" />
+    <string name="textv" />
     <string name="et1" />
     <string name="button1" />
     <string name="button2" />
     <string name="textview" />
     <string name="edittext" />
+    <string name="username" />
+    <string name="bcontinue">Continue</string>
     <string name="title_activity_reg">RegActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_username">UsernameActivity</string>
+    <string name="title_activity_database_helper">DatabaseHelper</string>
 
 </resources>
