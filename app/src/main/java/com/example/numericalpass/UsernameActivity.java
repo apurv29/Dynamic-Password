@@ -19,33 +19,37 @@ public class UsernameActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.username_layout);
+
+
         username = (EditText) findViewById(R.id.username);
         bcontinue = (Button) findViewById(R.id.bcontinue);
+
+
         db = new DatabaseHelper(this);
-        final String u = username.getText().toString();
-        System.out.println("u: "+ u);
-        System.out.println("username: "+ username.toString());
-            bcontinue.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                   user.setUsername(u);
-                    //TODO the function name should be addUser
-                   // db.addUsername(user);
+        bcontinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                   // DatabaseHelper db = new DatabaseHelper(Context);
-                    if(db.getUserByName(u)) {
-                        Intent intent = new Intent();
-                        intent.setClass(UsernameActivity.this, Activitytest.class);
-                        intent.putExtra("usern",u);
-                        startActivity(intent);
-                    }
-                        else
-                        Toast.makeText(getApplicationContext(), "Login!", Toast.LENGTH_SHORT).show();
-                }
-            });
+                final String u = username.getText().toString();
+                System.out.println("u: " + u);
+
+                user.setUsername(u);
+                //TODO the function name should be addUser
+                // db.addUsername(user);
+
+                // DatabaseHelper db = new DatabaseHelper(Context);
+                if (db.getUserByName(u)) {
+                    Intent intent = new Intent();
+                    intent.setClass(UsernameActivity.this, Activitytest.class);
+                    intent.putExtra("usern", u);
+                    startActivity(intent);
+                } else
+                    Toast.makeText(getApplicationContext(), "Login!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    }
+}
 
 

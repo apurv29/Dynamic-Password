@@ -99,20 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean getUserByName(String username) {
-        //TODO Add method logic
 
-        /*SQLiteDatabase db = this.getWritableDatabase();
-       String Query = "Select KEY_ID from " + TABLE_NUMPIN + " where " + KEY_USERNAME + " = " + username;
-      // String Query =  "SELECT * FROM ' + TABLE_NUMPIN + ' WHERE KEY_USERNAME=' + username +'";
-        Cursor cursor = db.rawQuery(Query,null);
-        if(cursor.getCount() <= 0){
-            cursor.close();
-            return false;
-        }
-        cursor.close();
-        return true;
-
-*/
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_NUMPIN,
@@ -122,9 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null, null, null, null);
 
         if(cursor.moveToFirst()) {
-            //TODO print the cursor and see what's coming in cursor
             System.out.println("cursor: "+ cursor);
-
             return true; //row exists
         }
         else
