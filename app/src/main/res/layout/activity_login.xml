@@ -37,6 +37,7 @@
         android:layout_alignLeft="@+id/tv1login"
         android:layout_below="@+id/tv1login"
         android:layout_weight="2"
+        android:inputType="number"
         android:text="@string/etlogin"
         android:textAppearance="?android:attr/textAppearanceLarge"
         />

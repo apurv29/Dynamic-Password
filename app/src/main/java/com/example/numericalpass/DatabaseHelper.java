@@ -134,4 +134,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return pass;
 
     }
+    public int updatewrongtry(String username,int wrongtry) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_WRONGTRY, wrongtry);
+       // values.put(KEY_STATUS, todo.getStatus());
+        System.out.println("wrontrydb: "+ wrongtry);
+        // updating row
+        return db.update(TABLE_NUMPIN, values, KEY_USERNAME + " = ?",
+                new String[] { username });
+
+    }
 }

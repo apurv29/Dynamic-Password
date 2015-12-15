@@ -34,6 +34,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     Button blogin;
     boolean flag = false;
     EditText etlogin;
+    int wrongtry = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,9 +183,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
 
                     Expression calc = new ExpressionBuilder(evaluate).build();
-                    Log.d("MainActivity", Arrays.toString(arraystring));
-                    Log.d("MainActivity", evaluate);
-                    Log.d("Mainhere", Arrays.toString(arrayvariables));
+
                     result1=calc.evaluate();
                     System.out.println(result1);
                     System.out.println(result2);
@@ -261,12 +260,34 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
 
         if (v == blogin) {
+
             if (etlogin.getText().toString().equals(String.valueOf(result1)) || etlogin.getText().toString().equals(String.valueOf(result2))) {
+
+                db.updatewrongtry(str_usern,wrongtry);
                 Toast.makeText(getApplicationContext(), "You are right", Toast.LENGTH_SHORT).show();
                 flag = true;
-                System.out.println("flag from b1" + flag);
+                Intent intent = new Intent();
+                intent.setClass(LoginActivity.this, WelcomeActivity.class);
+                //intent.putExtra("usern", u);
+                startActivity(intent);
+
+
             } else {
-                Toast.makeText(getApplicationContext(), "Let's try again!!", Toast.LENGTH_SHORT).show();
+                wrongtry++;
+                if (wrongtry <= 3) {
+                    Toast.makeText(getApplicationContext(), "Let's try again", Toast.LENGTH_SHORT).show();
+                    flag = true;
+                    System.out.println("wrongtry: " + wrongtry);
+                    db.updatewrongtry(str_usern, wrongtry);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Wrong !!", Toast.LENGTH_SHORT).show();
+                    db.updatewrongtry(str_usern,wrongtry);
+                    Intent intent = new Intent();
+                    intent.setClass(LoginActivity.this, UsernameActivity.class);
+                    //intent.putExtra("usern", u);
+                    startActivity(intent);
+                    //  Toast.makeText(getApplicationContext(), "Let's try again!!", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }

@@ -41,6 +41,7 @@
     <string name="tv1login" />
     <string name="etlogin" />
     <string name="blogin" />
+    <string name="tvwel" />
 
     <string name="bcontinue">Continue</string>
     <string name="title_activity_reg">RegActivity</string>
@@ -48,5 +49,6 @@
     <string name="title_activity_username">UsernameActivity</string>
     <string name="title_activity_database_helper">DatabaseHelper</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
 
 </resources>
