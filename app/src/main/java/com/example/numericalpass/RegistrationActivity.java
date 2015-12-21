@@ -7,7 +7,9 @@ import android.os.Bundle;
 
 import android.content.Intent;
 
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -66,16 +68,18 @@ public class RegistrationActivity extends Activity implements OnClickListener{
    	tv.setText("Test your Formula:  " + stringform);
    
    
-   	tv1=(TextView)findViewById(R.id.tv1);
-   	tv1.setText("Values for variables  " + sfinalvar);
+   	//tv1=(TextView)findViewById(R.id.tv1);
+
    
     button1=(Button)findViewById(R.id.button1);
     button1.setOnClickListener(this);
     button2=(Button)findViewById(R.id.button2);
     button2.setOnClickListener(this);
 
-   	
-   
+		tv1=(TextView)findViewById(R.id.tv1);
+
+		tv1.setText("Values for variables  " + sfinalvar);
+		tv1.setMovementMethod(new ScrollingMovementMethod());
 
     
 

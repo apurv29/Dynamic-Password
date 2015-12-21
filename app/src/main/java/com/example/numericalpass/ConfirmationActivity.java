@@ -65,6 +65,13 @@ public class ConfirmationActivity extends Activity {
 			               
 				//c.close();
 			}
+	@Override
+	public void onBackPressed() {
+
+		finish();
+		Intent intent = new Intent(ConfirmationActivity.this, UsernameActivity.class);
+		startActivity(intent);
+	}
 			
 
 }

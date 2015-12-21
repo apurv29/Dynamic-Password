@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -65,7 +66,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         }
         lenother = count;
-        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
         int i = 0;
         int j = 0;
         char[] arraystring= new char[len];
@@ -243,7 +244,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                 }
                 tv1login=(TextView)findViewById(R.id.tv1login);
+
+
                 tv1login.setText("Values for variables  " + h);
+                tv1login.setMovementMethod(new ScrollingMovementMethod());
                 //setintent.putExtra("getstring", h);
 
 
@@ -292,4 +296,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+
+        finish();
+        Intent intent = new Intent(LoginActivity.this, UsernameActivity.class);
+        startActivity(intent);
+    }
 }
