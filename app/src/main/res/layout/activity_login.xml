@@ -5,15 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/tvlogin"
-        android:layout_width="wrap_content"
-        android:layout_height="84dip"
-        android:layout_gravity="center_vertical|center_horizontal|center"
-        android:layout_weight="2"
-        android:text="@string/tvlogin"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        />
 
     <TextView
         android:id="@+id/tv1login"
@@ -29,7 +20,7 @@
         android:id="@+id/etlogin"
         android:layout_width="fill_parent"
         android:layout_height="84dip"
-        android:inputType="number"
+        android:inputType="numberDecimal|numberSigned"
         android:layout_weight="2"
         android:text="@string/et1"
         android:textAppearance="?android:attr/textAppearanceLarge"

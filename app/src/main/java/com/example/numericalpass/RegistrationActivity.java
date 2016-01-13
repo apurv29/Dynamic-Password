@@ -48,8 +48,8 @@ public class RegistrationActivity extends Activity implements OnClickListener{
     
 	 sfinalvar = ip.getStringExtra("getstring");
    	 ianswer=getIntent();
-	 ans= ianswer.getDoubleExtra("result", 0.0);
-	 
+	 ans= ianswer.getDoubleExtra("result", 0.00);
+	 System.out.println("ans: "+ ans);
    	 ianswer1=getIntent();
 	 ans1= ianswer1.getIntExtra("result2", 0);
 	System.out.println(ans1);
@@ -63,9 +63,9 @@ public class RegistrationActivity extends Activity implements OnClickListener{
    
    
 
-    Log.d("RegistrationActivity", "Received Array from intent"+ Arrays.toString(myArr));
+    Log.d("RegistrationActivity", "Received Array from intent"+ Arrays.toString(myArr).trim());
    	tv=(TextView)findViewById(R.id.tv);
-   	tv.setText("Test your Formula:  " + stringform);
+   	tv.setText("Formula:  " + stringform);
    
    
    	//tv1=(TextView)findViewById(R.id.tv1);
@@ -78,7 +78,8 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 
 		tv1=(TextView)findViewById(R.id.tv1);
 
-		tv1.setText("Values for variables  " + sfinalvar);
+		tv1.setText("Round off till 2 decimal digits or enter only the integer value \n Value of pi: 3.14 \n Substitute these values in the above formula: \n  " + sfinalvar);
+		System.out.println("sfinalvar: "+ sfinalvar);
 		tv1.setMovementMethod(new ScrollingMovementMethod());
 
     

@@ -34,8 +34,9 @@ public class ConfirmationActivity extends Activity {
 				DatabaseHelper db = new DatabaseHelper(this);
 				user.setUsername(str_usern);
 				user.setPassword(s);
-				db.addUser(user);
 				textv.setText("Your formula: "+ s);
+				db.addUser(user);
+
 				//user.getUsername(str_usern);
 				// db = openOrCreateDatabase("NumericalPass", Context.MODE_PRIVATE, null);
 				 //db.execSQL("CREATE TABLE IF NOT EXISTS NumPass2(_id INTEGER PRIMARY KEY, password VARCHAR(25));");

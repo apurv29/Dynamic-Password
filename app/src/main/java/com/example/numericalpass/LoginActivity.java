@@ -186,6 +186,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     Expression calc = new ExpressionBuilder(evaluate).build();
 
                     result1=calc.evaluate();
+                    result1 = (double) Math.round(result1 * 100) / 100;
                     System.out.println(result1);
                     System.out.println(result2);
 
@@ -211,8 +212,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                                 .build()
                                 .evaluate();
                         checkisvalid = true;
-                        result1=res;
-
+                       // result1=res;
+                        result1 = (double) Math.round(result1 * 100) / 100;
                     }
 
 
@@ -246,7 +247,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 tv1login=(TextView)findViewById(R.id.tv1login);
 
 
-                tv1login.setText("Values for variables  " + h);
+                tv1login.setText("Substitute these variables in your formula: \n  " + h);
                 tv1login.setMovementMethod(new ScrollingMovementMethod());
                 //setintent.putExtra("getstring", h);
 
