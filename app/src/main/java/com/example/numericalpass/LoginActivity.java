@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -65,7 +66,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         }
         lenother = count;
-        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
         int i = 0;
         int j = 0;
         char[] arraystring= new char[len];
@@ -185,6 +186,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     Expression calc = new ExpressionBuilder(evaluate).build();
 
                     result1=calc.evaluate();
+                    result1 = (double) Math.round(result1 * 100) / 100;
                     System.out.println(result1);
                     System.out.println(result2);
 
@@ -210,8 +212,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                                 .build()
                                 .evaluate();
                         checkisvalid = true;
-                        result1=res;
-
+                       // result1=res;
+                        result1 = (double) Math.round(result1 * 100) / 100;
                     }
 
 
@@ -243,7 +245,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                 }
                 tv1login=(TextView)findViewById(R.id.tv1login);
-                tv1login.setText("Values for variables  " + h);
+
+
+                tv1login.setText("Substitute these variables in your formula: \n  " + h);
+                tv1login.setMovementMethod(new ScrollingMovementMethod());
                 //setintent.putExtra("getstring", h);
 
 
@@ -292,4 +297,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+
+        finish();
+        Intent intent = new Intent(LoginActivity.this, UsernameActivity.class);
+        startActivity(intent);
+    }
 }

@@ -87,6 +87,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        System.out.println("username1: "+ user.getUsername());
         boolean exists = getUserByName(user.getUsername());
         if(exists == false) {
             values.put(KEY_USERNAME, user.getUsername()); // Contact Name
@@ -101,7 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean getUserByName(String username) {
 
         SQLiteDatabase db = this.getReadableDatabase();
-
+System.out.println("username: "+ username);
         Cursor cursor = db.query(TABLE_NUMPIN,
                 new String[]{KEY_USERNAME},
                 KEY_USERNAME + " = ? ",
