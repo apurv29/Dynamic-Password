@@ -15,7 +15,47 @@
             android:hint="Enter formula"
          android:layout_marginTop="30dp"
          android:ems="10" />
-
+    <TextView
+        android:id="@+id/ex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:singleLine="true"
+        android:layout_marginTop="40dp"
+        android:layout_weight="2"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Examples:"
+        />
+    <TextView
+        android:id="@+id/form1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/form1"
+        android:drawablePadding="10dp"
+        android:layout_marginTop="20dp"
+        android:singleLine="true"
+        />
+    <TextView
+        android:id="@+id/form2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/form2"
+        android:drawablePadding="10dp"
+        android:layout_marginTop="20dp"
+        android:singleLine="true"
+        />
+    <TextView
+        android:id="@+id/form3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/form3"
+        android:drawablePadding="10dp"
+        android:layout_marginTop="20dp"
+        android:singleLine="true"
+        />
 
       <Button
           android:id="@+id/bdone"
@@ -23,7 +63,7 @@
           android:layout_height="wrap_content"
           android:layout_alignLeft="@+id/edittext"
           android:layout_below="@+id/edittext"
-          android:layout_marginTop="410dp"
+          android:layout_marginTop="140dp"
           android:layout_weight="1"
           android:onClick="onClick"
           android:text="@string/done" />

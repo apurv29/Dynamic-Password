@@ -16,7 +16,7 @@ public class ConfirmationActivity extends Activity {
 	Intent i,iusern;
 	String s,str,str_usern;
 	TextView textv;
-	SQLiteDatabase db;
+	//SQLiteDatabase db;
 	User user = new User();
 
 			public void onCreate(Bundle savedInstanceState) {
