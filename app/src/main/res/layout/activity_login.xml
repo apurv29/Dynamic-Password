@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/tv1login"
         android:layout_width="wrap_content"
-        android:layout_height="84dip"
+        android:layout_height="200dip"
         android:layout_gravity="center_vertical|center_horizontal|center"
         android:layout_weight="2"
         android:scrollbars="vertical"
@@ -19,7 +19,7 @@
     <EditText
         android:id="@+id/etlogin"
         android:layout_width="fill_parent"
-        android:layout_height="84dip"
+        android:layout_height="10dip"
         android:inputType="numberDecimal|numberSigned"
         android:layout_weight="2"
         android:text="@string/et1"
@@ -29,7 +29,7 @@
     <Button
         android:id="@+id/blogin"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="10dip"
         android:layout_weight="0.96"
         android:text="Submit" />
 

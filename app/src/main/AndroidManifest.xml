@@ -59,14 +59,6 @@
                 android:value="com.example.numericalpass.Activitytest" />
         </activity>
         <activity
-            android:name=".RegActivity"
-            android:label="@string/title_activity_reg"
-            android:parentActivityName=".Activitytest">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.numericalpass.Activitytest" />
-        </activity>
-        <activity
             android:name=".WelcomeActivity"
             android:label="@string/title_activity_welcome"></activity>
     </application>

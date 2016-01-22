@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/tv"
         android:layout_width="wrap_content"
-            android:layout_height="84dip"
+            android:layout_height="1dip"
             android:layout_gravity="center_vertical|center_horizontal|center"
             android:layout_weight="2"
             android:text="@string/tv"
@@ -18,7 +18,7 @@
     <TextView
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
-            android:layout_height="84dip"
+            android:layout_height="140dip"
             android:layout_gravity="center_vertical|center_horizontal|center"
             android:layout_weight="2"
         android:scrollbars="vertical"
@@ -29,7 +29,7 @@
      <EditText
          android:id="@+id/et1"
         android:layout_width="fill_parent"
-            android:layout_height="84dip"
+            android:layout_height="5dip"
             android:inputType="numberDecimal|numberSigned"
             android:layout_weight="2"
             android:text="@string/et1"
@@ -39,15 +39,15 @@
      <Button
          android:id="@+id/button1"
          android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
+         android:layout_height="10dip"
          android:layout_weight="0.96"
-         android:text="Test" />
+         android:text="Check" />
 
      <Button
          android:id="@+id/button2"
          android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:layout_weight="0.97"
+         android:layout_height="10dip"
+         android:layout_weight="0.96"
          android:text="Confirm" />
     
 </LinearLayout>

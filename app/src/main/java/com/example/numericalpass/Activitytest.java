@@ -232,8 +232,7 @@ public class Activitytest extends Activity{
 
 
 								Expression calc = new ExpressionBuilder(evaluate).build();
-								Log.d("MainActivity", Arrays.toString(arraystring));
-								Log.d("MainActivity", evaluate);
+
 								Log.d("Mainhere", Arrays.toString(arrayvariables));
 								result1 = calc.evaluate();
 								//result1 =Math.round(Double.parseDouble(new DecimalFormat("##.##").format(result1)));
