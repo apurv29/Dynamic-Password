@@ -33,8 +33,8 @@ public class UsernameActivity extends ActionBarActivity {
 
                 final String u = username.getText().toString();
                 System.out.println("u: " + u);
-
-                user.setUsername(u);
+                if (!(u.equals(""))){
+                    user.setUsername(u);
                 //TODO the function name should be addUser
                 // db.addUsername(user);
 
@@ -51,6 +51,7 @@ public class UsernameActivity extends ActionBarActivity {
                     intent.putExtra("usern", u);
                     startActivity(intent);
                 }
+            }
             }
         });
     }

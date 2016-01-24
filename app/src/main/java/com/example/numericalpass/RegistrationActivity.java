@@ -120,6 +120,7 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 	public void onBackPressed() {
 	   Log.d("backButton", "onBackPressed Called");
 	  Intent setIntent = new Intent(RegistrationActivity.this, Activitytest.class);
+		setIntent.putExtra("usern",str_usern);
 	  setIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	   
 	   startActivity(setIntent);
