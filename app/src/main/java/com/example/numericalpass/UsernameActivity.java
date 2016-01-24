@@ -52,6 +52,9 @@ public class UsernameActivity extends ActionBarActivity {
                     startActivity(intent);
                 }
             }
+                else{
+                    Toast.makeText(getApplicationContext(), "Enter a username!!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
