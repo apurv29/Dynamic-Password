@@ -24,7 +24,8 @@ import android.widget.Toast;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String TAG = "DatabaseHelper";
+    // TAG for debugging
+    private static final String TAG = DatabaseHelper.class.getSimpleName();
 
     // Database Version
     private static final int DATABASE_VERSION = 1;
@@ -35,34 +36,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Table Names
     private static final String TABLE_NUMPIN = "numpin_table";
 
-
     private static final String KEY_ID = "_id"; //primary key
-    private static final String KEY_CREATED_AT = "created_at";
 
     // t_login Table - column nmaes
-
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_WRONGTRY = "wrongtry";
-
-
-
-
-
-
 
     // Table Create Statements
     // t_login table create statement
     private static final String CREATE_TABLE_t_login = "CREATE TABLE "
             + TABLE_NUMPIN + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USERNAME + " VARCHAR," + KEY_PASSWORD + " VARCHAR," + KEY_WRONGTRY + " INTEGER " + " )";
 
-
-
-
+    // Default Constructor
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
-
     }
 
     @Override
@@ -70,7 +58,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // creating required tables
         db.execSQL(CREATE_TABLE_t_login);
-
 
         Log.d(TAG, "creating tables");
 
@@ -89,7 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         System.out.println("username1: "+ user.getUsername());
         boolean exists = getUserByName(user.getUsername());
-        if(exists == false) {
+        if(!exists) {
             values.put(KEY_USERNAME, user.getUsername()); // Contact Name
             values.put(KEY_PASSWORD, user.getPassword()); // Contact Phone Number
             // Inserting Row
@@ -102,7 +89,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean getUserByName(String username) {
 
         SQLiteDatabase db = this.getReadableDatabase();
-System.out.println("username: "+ username);
+        System.out.println("username: "+ username);
         Cursor cursor = db.query(TABLE_NUMPIN,
                 new String[]{KEY_USERNAME},
                 KEY_USERNAME + " = ? ",
@@ -115,8 +102,6 @@ System.out.println("username: "+ username);
         }
         else
             return false;
-
-
     }
 
 

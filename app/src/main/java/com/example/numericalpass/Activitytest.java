@@ -330,7 +330,6 @@ public class Activitytest extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				//DO you work
 				edittext.setText("(a+b)^2", TextView.BufferType.EDITABLE);
 			}
@@ -340,7 +339,6 @@ public class Activitytest extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				//DO you work
 				edittext.setText("(a*b-c)/d", TextView.BufferType.EDITABLE);
 			}
@@ -349,7 +347,6 @@ public class Activitytest extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				//DO you work
 				edittext.setText("2*(a-b)", TextView.BufferType.EDITABLE);
 			}
