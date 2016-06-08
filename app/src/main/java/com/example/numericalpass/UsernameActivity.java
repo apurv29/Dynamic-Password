@@ -1,15 +1,21 @@
 package com.example.numericalpass;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class UsernameActivity extends ActionBarActivity {
+
+    private static final String TAG = UsernameActivity.class.getSimpleName();
 
     EditText username;
     Button bcontinue;
@@ -64,6 +70,58 @@ public class UsernameActivity extends ActionBarActivity {
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    public void insertOnClick(View view) {
+        Log.v(TAG,"insertOnClick");
+        Toast.makeText(this, "insert", Toast.LENGTH_SHORT).show();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(CustomContentProvider.COL_2,
+                ((EditText)findViewById(R.id.username)).getText().toString());
+
+        contentValues.put(CustomContentProvider.COL_3,
+                ((EditText)findViewById(R.id.no_of_successful_login)).getText().toString());
+
+        Uri uri = getContentResolver().insert(
+                CustomContentProvider.CONTENT_URI, contentValues
+        );
+
+        Toast.makeText(this,
+                uri.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    public void retrieveOnClick(View view) {
+        Log.v(TAG,"retrieveOnClick");
+        Toast.makeText(this, "retrieve", Toast.LENGTH_SHORT).show();
+
+        Uri uri = Uri.parse(CustomContentProvider.URL);
+
+        Cursor cursor = null;
+        try {
+            // Cursor cursor = managedQuery(uri, null, null, null, null);
+            // query(Uri,          The content uri
+            // mProjection,        The columns to return for each row
+            // mSelectionClause,   Selection Criteria
+            // mSelectionArgs,     Selection Criteria
+            // mSortOrder);        The sort order for the returned rows
+
+            cursor = getContentResolver().query(uri, null, null, null, null);
+
+            if(cursor.moveToFirst()) {
+                do {
+                    Toast.makeText(this, "" +
+                                    cursor.getString(cursor.getColumnIndex(CustomContentProvider.COL_1)) +
+                                    " , " + cursor.getString(cursor.getColumnIndex(CustomContentProvider.COL_2)) +
+                                    " , " + cursor.getString(cursor.getColumnIndex(CustomContentProvider.COL_3)),
+                            Toast.LENGTH_SHORT).show();
+                } while (cursor.moveToNext());
+            }
+        } finally {
+            if(cursor != null)
+                cursor.close();
+        }
     }
 }
 
