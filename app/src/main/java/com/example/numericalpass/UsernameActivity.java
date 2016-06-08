@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 public class UsernameActivity extends ActionBarActivity {
 
     private static final String TAG = UsernameActivity.class.getSimpleName();
@@ -21,11 +23,17 @@ public class UsernameActivity extends ActionBarActivity {
     Button bcontinue;
     User user = new User();
     private DatabaseHelper db;
+
+    // for recording the time user takes to signup : start time
+    public static long startSignUpTime;
+    public static ContentProviderHelper contentProviderHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.username_layout);
 
+        startSignUpTime = Calendar.getInstance().getTimeInMillis();
 
         username = (EditText) findViewById(R.id.username);
         bcontinue = (Button) findViewById(R.id.bcontinue);
@@ -46,10 +54,16 @@ public class UsernameActivity extends ActionBarActivity {
 
                 // DatabaseHelper db = new DatabaseHelper(Context);
                 if (!(db.getUserByName(u))) {
+
+                    // insert username in column 1 of contentProvider database
+                    contentProviderHelper = new ContentProviderHelper();
+                    contentProviderHelper.insertUsername(getContentResolver(), u);
+
                     Intent intent = new Intent();
                     intent.setClass(UsernameActivity.this, Activitytest.class);
                     intent.putExtra("usern", u);
                     startActivity(intent);
+
                 } else {
                     Toast.makeText(getApplicationContext(), "Login!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
@@ -57,6 +71,9 @@ public class UsernameActivity extends ActionBarActivity {
                     intent.putExtra("usern", u);
                     startActivity(intent);
                 }
+
+
+
             }
                 else{
                     Toast.makeText(getApplicationContext(), "Enter a username!!", Toast.LENGTH_SHORT).show();
@@ -70,58 +87,6 @@ public class UsernameActivity extends ActionBarActivity {
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-    }
-
-    public void insertOnClick(View view) {
-        Log.v(TAG,"insertOnClick");
-        Toast.makeText(this, "insert", Toast.LENGTH_SHORT).show();
-
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(CustomContentProvider.COL_2,
-                ((EditText)findViewById(R.id.username)).getText().toString());
-
-        contentValues.put(CustomContentProvider.COL_3,
-                ((EditText)findViewById(R.id.no_of_successful_login)).getText().toString());
-
-        Uri uri = getContentResolver().insert(
-                CustomContentProvider.CONTENT_URI, contentValues
-        );
-
-        Toast.makeText(this,
-                uri.toString(), Toast.LENGTH_LONG).show();
-    }
-
-    public void retrieveOnClick(View view) {
-        Log.v(TAG,"retrieveOnClick");
-        Toast.makeText(this, "retrieve", Toast.LENGTH_SHORT).show();
-
-        Uri uri = Uri.parse(CustomContentProvider.URL);
-
-        Cursor cursor = null;
-        try {
-            // Cursor cursor = managedQuery(uri, null, null, null, null);
-            // query(Uri,          The content uri
-            // mProjection,        The columns to return for each row
-            // mSelectionClause,   Selection Criteria
-            // mSelectionArgs,     Selection Criteria
-            // mSortOrder);        The sort order for the returned rows
-
-            cursor = getContentResolver().query(uri, null, null, null, null);
-
-            if(cursor.moveToFirst()) {
-                do {
-                    Toast.makeText(this, "" +
-                                    cursor.getString(cursor.getColumnIndex(CustomContentProvider.COL_1)) +
-                                    " , " + cursor.getString(cursor.getColumnIndex(CustomContentProvider.COL_2)) +
-                                    " , " + cursor.getString(cursor.getColumnIndex(CustomContentProvider.COL_3)),
-                            Toast.LENGTH_SHORT).show();
-                } while (cursor.moveToNext());
-            }
-        } finally {
-            if(cursor != null)
-                cursor.close();
-        }
     }
 }
 

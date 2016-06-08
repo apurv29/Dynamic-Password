@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.HashMap;
@@ -46,13 +47,13 @@ public class CustomContentProvider extends ContentProvider {
 
     static final String COL_1 = "_id";
     static final String COL_2 = "username";
-    static final String COL_3 = "number_of_successful_login";
+    static final String COL_3 = "sign_up_time";
 
     private static final String CREATE_DB_TABLE =
             "CREATE TABLE "+ TABLE_NAME +
                     " ("+COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + " "+COL_2+" TEXT NOT NULL,"
-                    + " "+COL_3+" TEXT NOT NULL);"
+                    + " "+COL_3+" TEXT);"
             ;
 
     private static final String DROP_DB_TABLE =
@@ -158,6 +159,22 @@ public class CustomContentProvider extends ContentProvider {
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        return 0;
+        int count = 0;
+
+        switch (uriMatcher.match(uri)){
+            case STUDENTS:
+                count = db.update(TABLE_NAME, values, selection, selectionArgs);
+                break;
+
+            case STUDENT_ID:
+                count = db.update(TABLE_NAME, values, COL_1 + " = " + uri.getPathSegments().get(1) +
+                        (!TextUtils.isEmpty(selection) ? " AND (" +selection + ')' : ""), selectionArgs);
+                break;
+
+            default:
+                throw new IllegalArgumentException("Unknown URI " + uri );
+        }
+        getContext().getContentResolver().notifyChange(uri, null);
+        return count;
     }
 }

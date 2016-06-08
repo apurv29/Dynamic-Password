@@ -69,7 +69,7 @@
             android:label="@string/title_activity_welcome"/>
 
         <provider
-            android:authorities="com.example.numericalpass.NumPin"
+            android:authorities="com.example.numericalpass.provider"
             android:name=".CustomContentProvider"
             android:exported="true"
             android:readPermission="com.example.numericalpass.READ_DATABASE"
