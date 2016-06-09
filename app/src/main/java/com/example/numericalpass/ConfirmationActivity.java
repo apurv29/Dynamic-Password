@@ -34,7 +34,7 @@ public class ConfirmationActivity extends Activity {
 				endSignUpTime = Calendar.getInstance().getTimeInMillis();
 
                 // insert time taken in signup process by user
-                long totalSignUpTime = endSignUpTime - UsernameActivity.startSignUpTime;
+                long totalSignUpTime = endSignUpTime - UsernameActivity.startTime;
                 Log.v(TAG,"totalSignUpTime: "+totalSignUpTime);
 
                 UsernameActivity.contentProviderHelper.insertSignUpTime(getApplicationContext(), String.valueOf(totalSignUpTime));
@@ -52,6 +52,8 @@ public class ConfirmationActivity extends Activity {
 				user.setPassword(s);
 				textv.setText("Your formula: "+ s);
 				db.addUser(user);
+
+                UsernameActivity.stopScreenSharing();
 
 			}
 	@Override

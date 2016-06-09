@@ -48,12 +48,18 @@ public class CustomContentProvider extends ContentProvider {
     static final String COL_1 = "_id";
     static final String COL_2 = "username";
     static final String COL_3 = "sign_up_time";
+    static final String COL_4 = "sign_up_video_location";
+    static final String COL_5 = "num_of_successful_login";
+    static final String COL_6 = "mean_login_time";
 
     private static final String CREATE_DB_TABLE =
             "CREATE TABLE "+ TABLE_NAME +
                     " ("+COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + " "+COL_2+" TEXT NOT NULL,"
-                    + " "+COL_3+" TEXT);"
+                    + " "+COL_3+" TEXT,"
+                    + " "+COL_4+" TEXT,"
+                    + " "+COL_5+" INTEGER,"
+                    + " "+COL_6+" REAL);"
             ;
 
     private static final String DROP_DB_TABLE =
