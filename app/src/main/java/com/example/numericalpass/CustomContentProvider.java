@@ -51,6 +51,8 @@ public class CustomContentProvider extends ContentProvider {
     static final String COL_4 = "sign_up_video_location";
     static final String COL_5 = "num_of_successful_login";
     static final String COL_6 = "mean_login_time";
+    static final String COL_7 = "video_location_of_every_login";
+    static final String COL_8 = "num_of_failed_login";
 
     private static final String CREATE_DB_TABLE =
             "CREATE TABLE "+ TABLE_NAME +
@@ -59,7 +61,9 @@ public class CustomContentProvider extends ContentProvider {
                     + " "+COL_3+" TEXT,"
                     + " "+COL_4+" TEXT,"
                     + " "+COL_5+" INTEGER,"
-                    + " "+COL_6+" REAL);"
+                    + " "+COL_6+" REAL,"
+                    + " "+COL_7+" TEXT,"
+                    + " "+COL_8+" INTEGER);"
             ;
 
     private static final String DROP_DB_TABLE =

@@ -27,7 +27,9 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class UsernameActivity extends ActionBarActivity {
@@ -63,8 +65,12 @@ public class UsernameActivity extends ActionBarActivity {
 
         init();
 
+        contentProviderHelper = new ContentProviderHelper();
+
         username = (EditText) findViewById(R.id.username);
         bcontinue = (Button) findViewById(R.id.bcontinue);
+
+        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyyhhmmss");
 
         db = new DatabaseHelper(this);
 
@@ -83,14 +89,15 @@ public class UsernameActivity extends ActionBarActivity {
 
                     Log.v(TAG,"New user");
 
+                    String timeStamp = simpleDateFormat.format(new Date());
+
                     String location = Environment.getExternalStoragePublicDirectory(Environment
-                            .DIRECTORY_DOWNLOADS)+"/"+u+"_sign_up.mp4";
+                            .DIRECTORY_DOWNLOADS)+"/"+u+"_"+timeStamp+"_sign_up.mp4";
 
                     initRecorder(location);
 
                     // insert username in column 1 of contentProvider database
-                    contentProviderHelper = new ContentProviderHelper();
-                    contentProviderHelper.insertNewUser(getContentResolver(), u, location);
+                    contentProviderHelper.insertNewUser(getApplicationContext(), u, location);
 
                     Toast.makeText(UsernameActivity.this, "started", Toast.LENGTH_SHORT).show();
                     shareScreen();
@@ -102,6 +109,17 @@ public class UsernameActivity extends ActionBarActivity {
                 }
                 else {
                     Log.v(TAG,"Old user");
+
+                    String timeStamp = simpleDateFormat.format(new Date());
+
+                    String location = Environment.getExternalStoragePublicDirectory(Environment
+                            .DIRECTORY_DOWNLOADS)+"/"+u+"_"+timeStamp+"_sign_in.mp4";
+                    initRecorder(location);
+
+                    shareScreen();
+
+                    contentProviderHelper.insertSignInVideo(getApplicationContext(), u, location);
+
                     Toast.makeText(getApplicationContext(), "Login!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
                     intent.setClass(UsernameActivity.this, LoginActivity.class);

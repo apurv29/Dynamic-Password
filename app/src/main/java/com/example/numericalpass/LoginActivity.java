@@ -288,6 +288,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 } else {
                     Toast.makeText(getApplicationContext(), "Wrong !!", Toast.LENGTH_SHORT).show();
                     db.updatewrongtry(str_usern,wrongtry);
+
+                    UsernameActivity.stopScreenSharing();
+                    UsernameActivity.contentProviderHelper.updateFailedLoginAttempts(getApplicationContext(),
+                            str_usern);
+
                     Intent intent = new Intent();
                     intent.setClass(LoginActivity.this, UsernameActivity.class);
                     //intent.putExtra("usern", u);

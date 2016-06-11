@@ -28,6 +28,8 @@ public class WelcomeActivity extends ActionBarActivity {
         UsernameActivity.contentProviderHelper.updateLoginSuccessCounter(getApplicationContext(), userName);
         UsernameActivity.contentProviderHelper.updateMeanLoginTime(getApplicationContext(), userName, totalLoginTime);
 
+        UsernameActivity.stopScreenSharing();
+
     }
     @Override
     public void onBackPressed() {

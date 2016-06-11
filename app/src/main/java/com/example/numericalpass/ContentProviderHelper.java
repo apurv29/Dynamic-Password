@@ -25,7 +25,7 @@ public class ContentProviderHelper {
 
     private static int numOfSuccessLogin = 0;
 
-    public void insertNewUser(ContentResolver contentResolver, String userName, String location) {
+    public void insertNewUser(Context context, String userName, String location) {
         Log.v(TAG,"insert username & location");
 
         user = userName;
@@ -36,8 +36,10 @@ public class ContentProviderHelper {
         contentValues.put(CustomContentProvider.COL_4, location);
         contentValues.put(CustomContentProvider.COL_5, 0);
         contentValues.put(CustomContentProvider.COL_6, 0);
+        contentValues.put(CustomContentProvider.COL_7, "");
+        contentValues.put(CustomContentProvider.COL_8, 0);
 
-        contentResolver.insert(CustomContentProvider.CONTENT_URI, contentValues);
+        context.getContentResolver().insert(CustomContentProvider.CONTENT_URI, contentValues);
     }
 
     public void insertSignUpTime(Context context, String signUpTime) {
@@ -57,24 +59,6 @@ public class ContentProviderHelper {
                 mSelectionArgs);
 
         Log.v(TAG,"Rows updated: "+mUpdatedRows);
-
-        /*String[] projection = {CustomContentProvider.COL_1};
-        String selectionClause = CustomContentProvider.COL_2 + " = ?";
-        String[] selectionArgs = {""};
-        selectionArgs[0] = user;
-
-        Cursor cursor = context.getContentResolver().query(CustomContentProvider.CONTENT_URI, null, selectionClause, selectionArgs, null);
-        if(cursor != null) {
-            if(cursor.moveToFirst()) {
-                do {
-
-                    Log.v(TAG,"result: "+cursor.getString(cursor.getColumnIndex(CustomContentProvider.COL_1)) +
-                            ", " +  cursor.getString(cursor.getColumnIndex(CustomContentProvider.COL_2)) +
-                            ", " + cursor.getString(cursor.getColumnIndex(CustomContentProvider.COL_3)));
-
-                } while (cursor.moveToNext());
-            }
-        }*/
     }
 
     public void updateLoginSuccessCounter(Context context, String userName) {
@@ -167,7 +151,85 @@ public class ContentProviderHelper {
         Log.v(TAG,"loginTime: "+loginTime);
         Log.v(TAG,"newMeanLoginTime: "+newMeanLoginTime);
         Log.v(TAG,"numOfSuccessLogin: "+numOfSuccessLogin);
+    }
+
+    public void insertSignInVideo(Context context, String userName, String location) {
+        Log.v(TAG,"insert signInVideo");
+
+        ContentValues mUpdateValues = new ContentValues();
+
+        String oldLocation = null;
+
+        //String[] projection = {CustomContentProvider.COL_7};
+        String mSelectionClause = CustomContentProvider.COL_2 + " = ?";
+        String[] mSelectionArgs = {""};
+        mSelectionArgs[0] = userName;
+
+        Cursor cursor = context.getContentResolver().query(CustomContentProvider.CONTENT_URI, null, mSelectionClause, mSelectionArgs, null);
+        if(cursor != null) {
+            if(cursor.moveToFirst()) {
+                do {
+
+                    oldLocation = cursor.getString(cursor.getColumnIndex(CustomContentProvider.COL_7));
+
+                    Log.v(TAG,"result: "+cursor.getString(cursor.getColumnIndex(CustomContentProvider.COL_2)) +
+                            ", "+ oldLocation);
+
+                } while (cursor.moveToNext());
+            }
+        }
+
+        String newLocation = oldLocation+";"+location;
+
+        mUpdateValues.put(CustomContentProvider.COL_7, newLocation);
+
+        int mUpdatedRows;
+
+        mUpdatedRows = context.getContentResolver().update(CustomContentProvider.CONTENT_URI,
+                mUpdateValues,
+                mSelectionClause,
+                mSelectionArgs);
+
+        Log.v(TAG,"mUpdatedRows: "+mUpdatedRows);
 
     }
 
+    public void updateFailedLoginAttempts(Context context, String userName) {
+        int oldFailedLoginCounter = 0;
+
+        Log.v(TAG,"update failed login counter");
+        ContentValues mUpdateValues = new ContentValues();
+
+        //String[] projection = {CustomContentProvider.COL_8};
+        String mSelectionClause = CustomContentProvider.COL_2 + " = ?";
+        String[] mSelectionArgs = {""};
+        mSelectionArgs[0] = userName;
+
+        Cursor cursor = context.getContentResolver().query(CustomContentProvider.CONTENT_URI, null, mSelectionClause, mSelectionArgs, null);
+        if(cursor != null) {
+            if(cursor.moveToFirst()) {
+                do {
+
+                    oldFailedLoginCounter = cursor.getInt(cursor.getColumnIndex(CustomContentProvider.COL_8));
+
+                    Log.v(TAG,"result: "+cursor.getString(cursor.getColumnIndex(CustomContentProvider.COL_2)) +
+                            ", "+ oldFailedLoginCounter);
+
+                } while (cursor.moveToNext());
+            }
+        }
+
+        int newFailedLoginCounter = ++oldFailedLoginCounter;
+
+        mUpdateValues.put(CustomContentProvider.COL_8, newFailedLoginCounter);
+
+        int mUpdatedRows = 0;
+
+        mUpdatedRows = context.getContentResolver().update(CustomContentProvider.CONTENT_URI,
+                mUpdateValues,
+                mSelectionClause,
+                mSelectionArgs);
+
+        Log.v(TAG,"no of rows updated: "+mUpdatedRows);
+    }
 }
