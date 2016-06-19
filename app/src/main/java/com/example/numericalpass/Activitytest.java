@@ -1,7 +1,6 @@
 package com.example.numericalpass;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Random;
@@ -18,9 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 public class Activitytest extends Activity{
-
 
 	EditText edittext;
 	Button bdone;

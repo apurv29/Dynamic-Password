@@ -1,49 +1,29 @@
 package com.example.numericalpass;
 
 import android.annotation.TargetApi;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
 import android.media.MediaRecorder;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.EditTextPreference;
 import android.support.v7.app.ActionBarActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class UsernameActivity extends ActionBarActivity {
@@ -70,7 +50,6 @@ public class UsernameActivity extends ActionBarActivity {
 
     // for recording the time user takes to signup : start time
     public static long startTime;
-    public static ContentProviderHelper contentProviderHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +59,6 @@ public class UsernameActivity extends ActionBarActivity {
         CSVeditor.shared().init(getApplicationContext());
 
         init();
-
-        contentProviderHelper = new ContentProviderHelper();
 
         username = (EditText) findViewById(R.id.username);
         bcontinue = (Button) findViewById(R.id.bcontinue);
@@ -107,13 +84,12 @@ public class UsernameActivity extends ActionBarActivity {
 
                     String timeStamp = simpleDateFormat.format(new Date());
 
-                    String location = Environment.getExternalStoragePublicDirectory(Environment
-                            .DIRECTORY_DOWNLOADS)+"/"+u+"_"+timeStamp+"_num_sign_up.mp4";
+                    String location = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                            "/UserStudyFramework/"+
+                            u+ "_"+timeStamp+
+                            "_num_sign_up.mp4";
 
                     initRecorder(location);
-
-                    // insert username in column 1 of contentProvider database
-                    contentProviderHelper.insertNewUser(getApplicationContext(), u, location);
 
                     Toast.makeText(UsernameActivity.this, "started", Toast.LENGTH_SHORT).show();
                     shareScreen();
@@ -132,13 +108,14 @@ public class UsernameActivity extends ActionBarActivity {
 
                     String timeStamp = simpleDateFormat.format(new Date());
 
-                    String location = Environment.getExternalStoragePublicDirectory(Environment
-                            .DIRECTORY_DOWNLOADS)+"/"+u+"_"+timeStamp+"_num_sign_in.mp4";
+                    String location = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                            "/UserStudyFramework/"+
+                            u+ "_"+timeStamp+
+                            "_num_sign_in.mp4";
+
                     initRecorder(location);
 
                     shareScreen();
-
-                    contentProviderHelper.insertSignInVideo(getApplicationContext(), u, location);
 
                     Toast.makeText(getApplicationContext(), "Login!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();

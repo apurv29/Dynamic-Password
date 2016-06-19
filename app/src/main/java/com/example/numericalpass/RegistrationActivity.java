@@ -10,7 +10,6 @@ import android.content.Intent;
 
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;

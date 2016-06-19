@@ -27,9 +27,6 @@ public class WelcomeActivity extends ActionBarActivity {
 
         CSVeditor.shared().recordTimeStamp(totalLoginTime, 9);
 
-        UsernameActivity.contentProviderHelper.updateLoginSuccessCounter(getApplicationContext(), userName);
-        UsernameActivity.contentProviderHelper.updateMeanLoginTime(getApplicationContext(), userName, totalLoginTime);
-
         UsernameActivity.stopScreenSharing();
 
     }

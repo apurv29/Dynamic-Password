@@ -1,16 +1,10 @@
 package com.example.numericalpass;
 
-
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import java.util.Calendar;
 
@@ -38,8 +32,6 @@ public class ConfirmationActivity extends Activity {
                 Log.v(TAG,"totalSignUpTime: "+totalSignUpTime);
 
 				CSVeditor.shared().recordTimeStamp(totalSignUpTime, 9);
-
-                UsernameActivity.contentProviderHelper.insertSignUpTime(getApplicationContext(), String.valueOf(totalSignUpTime));
 			    
 			    i=getIntent();
 				iusern = getIntent();

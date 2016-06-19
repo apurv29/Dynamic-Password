@@ -1,26 +1,11 @@
 package com.example.numericalpass;
 
-import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.net.nsd.NsdManager.RegistrationListener;
-import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.util.Log;
-import android.widget.Toast;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
