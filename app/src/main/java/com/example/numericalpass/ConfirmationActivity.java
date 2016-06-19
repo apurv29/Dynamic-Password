@@ -37,6 +37,8 @@ public class ConfirmationActivity extends Activity {
                 long totalSignUpTime = endSignUpTime - UsernameActivity.startTime;
                 Log.v(TAG,"totalSignUpTime: "+totalSignUpTime);
 
+				CSVeditor.shared().recordTimeStamp(totalSignUpTime, 9);
+
                 UsernameActivity.contentProviderHelper.insertSignUpTime(getApplicationContext(), String.valueOf(totalSignUpTime));
 			    
 			    i=getIntent();

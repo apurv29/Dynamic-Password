@@ -3,6 +3,7 @@ package com.example.numericalpass;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Random;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -315,6 +316,8 @@ public class Activitytest extends Activity{
 							}
 							setintent.putExtra("getstring", h);
 
+							long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
+							CSVeditor.shared().recordTimeStamp(timeSpent, 6);
 
 							startActivity(setintent);
 						}
@@ -354,7 +357,11 @@ public class Activitytest extends Activity{
 
 	}
 
-
-
+	long startTime;
+	@Override
+	protected void onResume() {
+		super.onResume();
+		startTime = Calendar.getInstance().getTimeInMillis();
+	}
 }
 	

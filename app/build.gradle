@@ -22,4 +22,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.android.support:support-v4:21.0.3'
     compile files('libs/exp4j-0.4.6-SNAPSHOT.jar')
+    compile group: 'org.apache.poi', name: 'poi', version: '3.12'
 }

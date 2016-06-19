@@ -26,10 +26,24 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class UsernameActivity extends ActionBarActivity {
@@ -63,6 +77,8 @@ public class UsernameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.username_layout);
 
+        CSVeditor.shared().init(getApplicationContext());
+
         init();
 
         contentProviderHelper = new ContentProviderHelper();
@@ -92,7 +108,7 @@ public class UsernameActivity extends ActionBarActivity {
                     String timeStamp = simpleDateFormat.format(new Date());
 
                     String location = Environment.getExternalStoragePublicDirectory(Environment
-                            .DIRECTORY_DOWNLOADS)+"/"+u+"_"+timeStamp+"_sign_up.mp4";
+                            .DIRECTORY_DOWNLOADS)+"/"+u+"_"+timeStamp+"_num_sign_up.mp4";
 
                     initRecorder(location);
 
@@ -105,6 +121,10 @@ public class UsernameActivity extends ActionBarActivity {
                     Intent intent = new Intent();
                     intent.setClass(UsernameActivity.this, Activitytest.class);
                     intent.putExtra("usern", u);
+
+                    long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
+                    CSVeditor.shared().insertNewUser(u, u+"_"+timeStamp+"_num_sign_up.mp4", timeSpent);
+
                     startActivity(intent);
                 }
                 else {
@@ -113,7 +133,7 @@ public class UsernameActivity extends ActionBarActivity {
                     String timeStamp = simpleDateFormat.format(new Date());
 
                     String location = Environment.getExternalStoragePublicDirectory(Environment
-                            .DIRECTORY_DOWNLOADS)+"/"+u+"_"+timeStamp+"_sign_in.mp4";
+                            .DIRECTORY_DOWNLOADS)+"/"+u+"_"+timeStamp+"_num_sign_in.mp4";
                     initRecorder(location);
 
                     shareScreen();
@@ -124,6 +144,10 @@ public class UsernameActivity extends ActionBarActivity {
                     Intent intent = new Intent();
                     intent.setClass(UsernameActivity.this, LoginActivity.class);
                     intent.putExtra("usern", u);
+
+                    long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
+                    CSVeditor.shared().insertSignInLog(u, u+"_"+timeStamp+"_num_sign_in.mp4",timeSpent);
+
                     startActivity(intent);
                 }
             }
@@ -160,7 +184,6 @@ public class UsernameActivity extends ActionBarActivity {
             startActivityForResult(mediaProjectionManager.createScreenCaptureIntent(), REQUEST_CODE);
             return;
         }
-
     }
 
     private class MediaProjectionCallback extends MediaProjection.Callback {
@@ -251,6 +274,16 @@ public class UsernameActivity extends ActionBarActivity {
         Log.v(TAG,"MediaProjection Stopped");
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopScreenSharing();
+    }
 }
 
 

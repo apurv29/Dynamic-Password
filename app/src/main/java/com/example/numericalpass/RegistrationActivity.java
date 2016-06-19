@@ -1,6 +1,7 @@
 package com.example.numericalpass;
 
 import java.util.Arrays;
+import java.util.Calendar;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -107,6 +108,10 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 	      	  setintent.setClass(RegistrationActivity.this, ConfirmationActivity.class);
 	      	 setintent.putExtra("confirmstring",stringform);
 			setintent.putExtra("usern", str_usern);
+
+			long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
+			CSVeditor.shared().recordTimeStamp(timeSpent, 7);
+
 	      	 startActivity(setintent);
 		}
 		if(flag == false){
@@ -128,6 +133,11 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 	   
 	}
 
-
+	long startTime;
+	@Override
+	protected void onResume() {
+		super.onResume();
+		startTime = Calendar.getInstance().getTimeInMillis();
+	}
 }
 	

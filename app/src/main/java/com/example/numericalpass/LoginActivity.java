@@ -18,6 +18,7 @@ import net.objecthunter.exp4j.ExpressionBuilder;
 import net.objecthunter.exp4j.operator.Operator;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Random;
 
 public class LoginActivity extends Activity implements View.OnClickListener {
@@ -274,6 +275,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 Intent intent = new Intent();
                 intent.putExtra("USERNAME",str_usern);
                 intent.setClass(LoginActivity.this, WelcomeActivity.class);
+
+                long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
+                CSVeditor.shared().recordTimeStamp(timeSpent, 8);
+                CSVeditor.shared().setSuccessLogin(true);
+
+
+
                 //intent.putExtra("usern", u);
                 startActivity(intent);
 
@@ -296,6 +304,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     Intent intent = new Intent();
                     intent.setClass(LoginActivity.this, UsernameActivity.class);
                     //intent.putExtra("usern", u);
+                    CSVeditor.shared().setSuccessLogin(false);
+
                     startActivity(intent);
                     //  Toast.makeText(getApplicationContext(), "Let's try again!!", Toast.LENGTH_SHORT).show();
                 }
@@ -309,5 +319,12 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         finish();
         Intent intent = new Intent(LoginActivity.this, UsernameActivity.class);
         startActivity(intent);
+    }
+
+    long startTime;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startTime = Calendar.getInstance().getTimeInMillis();
     }
 }

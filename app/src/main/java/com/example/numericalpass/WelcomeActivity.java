@@ -25,6 +25,8 @@ public class WelcomeActivity extends ActionBarActivity {
         long totalLoginTime = endLoginTime - UsernameActivity.startTime;
         Log.v(TAG,"Total login time: "+totalLoginTime);
 
+        CSVeditor.shared().recordTimeStamp(totalLoginTime, 9);
+
         UsernameActivity.contentProviderHelper.updateLoginSuccessCounter(getApplicationContext(), userName);
         UsernameActivity.contentProviderHelper.updateMeanLoginTime(getApplicationContext(), userName, totalLoginTime);
 
