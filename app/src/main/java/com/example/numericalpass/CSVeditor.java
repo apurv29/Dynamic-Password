@@ -113,6 +113,14 @@ public class CSVeditor {
                 cell.setCellValue("time_on_login_activity");
                 cell = row.createCell(9);
                 cell.setCellValue("total_time_spent");
+                cell = row.createCell(10);
+                cell.setCellValue("rating");
+                cell = row.createCell(11);
+                cell.setCellValue("memory_burden");
+                cell = row.createCell(12);
+                cell.setCellValue("understand");
+                cell = row.createCell(13);
+                cell.setCellValue("remember");
 
             } else {
                 Log.v("dks","sheet present");
@@ -149,6 +157,14 @@ public class CSVeditor {
         cell.setCellValue("-");
         cell = row.createCell(9);
         cell.setCellValue("-");
+        cell = row.createCell(10);
+        cell.setCellValue("-");
+        cell = row.createCell(11);
+        cell.setCellValue("-");
+        cell = row.createCell(12);
+        cell.setCellValue("-");
+        cell = row.createCell(13);
+        cell.setCellValue("-");
         writeToWorkbook();
     }
 
@@ -177,6 +193,14 @@ public class CSVeditor {
         cell.setCellValue("-");
         cell = currentRowHolder.createCell(9);
         cell.setCellValue("-");
+        cell = currentRowHolder.createCell(10);
+        cell.setCellValue("-");
+        cell = currentRowHolder.createCell(11);
+        cell.setCellValue("-");
+        cell = currentRowHolder.createCell(12);
+        cell.setCellValue("-");
+        cell = currentRowHolder.createCell(13);
+        cell.setCellValue("-");
         writeToWorkbook();
     }
 
@@ -194,6 +218,17 @@ public class CSVeditor {
         writeToWorkbook();
     }
 
+    public void insertFeedback(int rating, String memoryBurden, String understand, String remember) {
+        Cell cell = sheet.getRow(currentRow+1).getCell(10);
+        cell.setCellValue(rating);
+        cell = sheet.getRow(currentRow+1).getCell(11);
+        cell.setCellValue(memoryBurden);
+        cell = sheet.getRow(currentRow+1).getCell(12);
+        cell.setCellValue(understand);
+        cell = sheet.getRow(currentRow+1).getCell(13);
+        cell.setCellValue(remember);
+    }
+
     public void writeToWorkbook() {
         Log.v("dks","writing to workbook");
         File file = new File(FILE_PATH);
@@ -209,7 +244,6 @@ public class CSVeditor {
             e.printStackTrace();
         }
     }
-
 
     public String getTimeStamp() {
         return simpleDateFormat.format(new Date());

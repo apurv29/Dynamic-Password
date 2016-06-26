@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">NumericalPass</string>
+    <string name="action_instructions">Instructions</string>
     <string name="action_settings">Settings</string>
     <string name="exit">Exit</string>
     <string name="one">a</string>
@@ -50,5 +51,33 @@
     <string name="title_activity_database_helper">DatabaseHelper</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="instuctions">1. Use any username for signup process in main page
+        \n2. Enter any formula that you can remember according to your ease or select from given examples
+        \n3. Put the given numbers in your formula and click check to first check the formula
+        and then press confirm to make it the password for the entered username
+        \n4. Use back to return to the main page
+        \n5. Now using the username you created login in the main page.
+        \n6. Now substitute the values to your equation and click submit
+        \n7. If correct then you will be directed to a welcome page otherwise you have 4 chances to get your answer write
+        \n8. If you cannot login then make another username and try again.</string>
+
+    <string name="spn_memory_burden">Memory Burden</string>
+    <string-array name="arr_memory_burden">
+        <item>Easy</item>
+        <item>Average</item>
+        <item>Difficult</item>
+    </string-array>
+
+    <string name="spn_understand">Understanding level</string>
+    <string-array name="arr_understand">
+        <item>Easy</item>
+        <item>Difficult</item>
+    </string-array>
+
+    <string name="spn_remember">Understanding level</string>
+    <string-array name="arr_remember">
+        <item>Easy</item>
+        <item>Difficult</item>
+    </string-array>
 
 </resources>
