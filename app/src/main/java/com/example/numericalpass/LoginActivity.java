@@ -53,12 +53,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         etlogin=(EditText)findViewById(R.id.etlogin);
         while(g < len)	{
 
-            if(str.charAt(g) >= 97 && str.charAt(g)<=122)
-            {
+            if(str.charAt(g) >= 97 && str.charAt(g)<=122) {
                 count++;
 
             }
-
             g++;
 
         }
@@ -309,6 +307,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
+        UsernameActivity.stopScreenSharing();
 
         finish();
         Intent intent = new Intent(LoginActivity.this, UsernameActivity.class);

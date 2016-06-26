@@ -360,5 +360,11 @@ public class Activitytest extends Activity{
 		super.onResume();
 		startTime = Calendar.getInstance().getTimeInMillis();
 	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		UsernameActivity.stopScreenSharing();
+	}
 }
 	

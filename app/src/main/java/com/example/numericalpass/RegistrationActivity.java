@@ -122,6 +122,9 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 		
 	@Override
 	public void onBackPressed() {
+
+		UsernameActivity.stopScreenSharing();
+
 	   Log.d("backButton", "onBackPressed Called");
 	  Intent setIntent = new Intent(RegistrationActivity.this, Activitytest.class);
 		setIntent.putExtra("usern",str_usern);
