@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -28,6 +29,8 @@ public class WelcomeActivity extends ActionBarActivity {
     private Spinner spnUnderstand;
     private Spinner spnRemember;
 
+    boolean submitPressed = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +42,7 @@ public class WelcomeActivity extends ActionBarActivity {
         spnUnderstand = (Spinner) findViewById(R.id.spn_understand);
         spnRemember = (Spinner) findViewById(R.id.spn_remember);
 
-        String userName = getIntent().getStringExtra("USERNAME");
+        final String userName = getIntent().getStringExtra("USERNAME");
 
         endLoginTime = Calendar.getInstance().getTimeInMillis();
 
@@ -64,7 +67,9 @@ public class WelcomeActivity extends ActionBarActivity {
 
                 CSVeditor.shared().insertFeedback(rating, memoryBurden, understand, remember);
 
+                scheduleNotification(getNotification("Its time to login using "+userName), 10000);
 
+                submitPressed = true;
 
                 onBackPressed();
             }
@@ -74,9 +79,14 @@ public class WelcomeActivity extends ActionBarActivity {
     @Override
     public void onBackPressed() {
 
-        finish();
-        Intent intent = new Intent(WelcomeActivity.this, UsernameActivity.class);
-        startActivity(intent);
+        if(submitPressed) {
+            finish();
+            Intent intent = new Intent(WelcomeActivity.this, UsernameActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(WelcomeActivity.this, "Please press submit", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void scheduleNotification(Notification notification, int delay) {
@@ -102,7 +112,7 @@ public class WelcomeActivity extends ActionBarActivity {
                 PendingIntent.FLAG_ONE_SHOT);
 
         Notification.Builder builder = new Notification.Builder(this);
-        builder.setContentTitle("Scheduled Notification");
+        builder.setContentTitle("Numerical password login");
         builder.setContentIntent(pendingIntent);
         builder.setAutoCancel(true);
         builder.setDefaults(Notification.DEFAULT_ALL);

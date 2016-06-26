@@ -274,10 +274,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 CSVeditor.shared().recordTimeStamp(timeSpent, 8);
                 CSVeditor.shared().setSuccessLogin(true);
 
-
-
                 //intent.putExtra("usern", u);
                 startActivity(intent);
+
+                finish();
 
 
             } else {
