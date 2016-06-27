@@ -363,8 +363,9 @@ public class Activitytest extends Activity{
 
 	@Override
 	public void onBackPressed() {
-		super.onBackPressed();
-		UsernameActivity.stopScreenSharing();
+
+		Toast.makeText(Activitytest.this, "Please complete the signUp process", Toast.LENGTH_SHORT).show();
+
 	}
 }
 	

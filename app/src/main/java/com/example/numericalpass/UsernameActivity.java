@@ -238,6 +238,7 @@ public class UsernameActivity extends ActionBarActivity {
 
     private void initRecorder(String location) {
 
+
         try {
             mediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);
             mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
@@ -251,7 +252,9 @@ public class UsernameActivity extends ActionBarActivity {
             int orientation = ORIENTATIONS.get(rotation + 90);
             mediaRecorder.setOrientationHint(orientation);
             mediaRecorder.prepare();
-        } catch (IOException e) {
+        } catch (IOException | IllegalStateException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
