@@ -13,6 +13,7 @@
         android:hint="Enter username"
         android:layout_marginTop="30dp"
         android:ems="10" />
+
     <Button
         android:id="@+id/bcontinue"
         android:layout_width="fill_parent"
@@ -23,6 +24,8 @@
         android:layout_weight="1"
         android:onClick="onClick"
         android:text="Continue" />
+
+    <!-- layout_marginTop = "360dp"-->
 
 
 </LinearLayout>

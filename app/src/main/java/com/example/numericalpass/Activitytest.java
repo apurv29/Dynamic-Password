@@ -1,8 +1,8 @@
 package com.example.numericalpass;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Random;
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -17,9 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 public class Activitytest extends Activity{
-
 
 	EditText edittext;
 	Button bdone;
@@ -315,6 +313,8 @@ public class Activitytest extends Activity{
 							}
 							setintent.putExtra("getstring", h);
 
+							long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
+							CSVeditor.shared().recordTimeStamp(timeSpent, 6);
 
 							startActivity(setintent);
 						}
@@ -330,7 +330,6 @@ public class Activitytest extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				//DO you work
 				edittext.setText("(a+b)^2", TextView.BufferType.EDITABLE);
 			}
@@ -340,7 +339,6 @@ public class Activitytest extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				//DO you work
 				edittext.setText("(a*b-c)/d", TextView.BufferType.EDITABLE);
 			}
@@ -349,7 +347,6 @@ public class Activitytest extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				//DO you work
 				edittext.setText("2*(a-b)", TextView.BufferType.EDITABLE);
 			}
@@ -357,7 +354,18 @@ public class Activitytest extends Activity{
 
 	}
 
+	long startTime;
+	@Override
+	protected void onResume() {
+		super.onResume();
+		startTime = Calendar.getInstance().getTimeInMillis();
+	}
 
+	@Override
+	public void onBackPressed() {
 
+		Toast.makeText(Activitytest.this, "Please complete the signUp process", Toast.LENGTH_SHORT).show();
+
+	}
 }
 	

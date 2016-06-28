@@ -1,12 +1,9 @@
 package com.example.numericalpass;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +14,7 @@ import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 import net.objecthunter.exp4j.operator.Operator;
 
-import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Random;
 
 public class LoginActivity extends Activity implements View.OnClickListener {
@@ -56,12 +53,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         etlogin=(EditText)findViewById(R.id.etlogin);
         while(g < len)	{
 
-            if(str.charAt(g) >= 97 && str.charAt(g)<=122)
-            {
+            if(str.charAt(g) >= 97 && str.charAt(g)<=122) {
                 count++;
 
             }
-
             g++;
 
         }
@@ -272,9 +267,17 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 Toast.makeText(getApplicationContext(), "You are right", Toast.LENGTH_SHORT).show();
                 flag = true;
                 Intent intent = new Intent();
+                intent.putExtra("USERNAME",str_usern);
                 intent.setClass(LoginActivity.this, WelcomeActivity.class);
+
+                long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
+                CSVeditor.shared().recordTimeStamp(timeSpent, 8);
+                CSVeditor.shared().setSuccessLogin(true);
+
                 //intent.putExtra("usern", u);
                 startActivity(intent);
+
+                finish();
 
 
             } else {
@@ -287,9 +290,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 } else {
                     Toast.makeText(getApplicationContext(), "Wrong !!", Toast.LENGTH_SHORT).show();
                     db.updatewrongtry(str_usern,wrongtry);
+
+                    UsernameActivity.stopScreenSharing();
+
                     Intent intent = new Intent();
                     intent.setClass(LoginActivity.this, UsernameActivity.class);
                     //intent.putExtra("usern", u);
+                    CSVeditor.shared().setSuccessLogin(false);
+
                     startActivity(intent);
                     //  Toast.makeText(getApplicationContext(), "Let's try again!!", Toast.LENGTH_SHORT).show();
                 }
@@ -299,9 +307,17 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
+        UsernameActivity.stopScreenSharing();
 
         finish();
         Intent intent = new Intent(LoginActivity.this, UsernameActivity.class);
         startActivity(intent);
+    }
+
+    long startTime;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startTime = Calendar.getInstance().getTimeInMillis();
     }
 }

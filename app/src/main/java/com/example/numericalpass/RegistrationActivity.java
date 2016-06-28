@@ -1,6 +1,7 @@
 package com.example.numericalpass;
 
 import java.util.Arrays;
+import java.util.Calendar;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,7 +10,6 @@ import android.content.Intent;
 
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -107,6 +107,10 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 	      	  setintent.setClass(RegistrationActivity.this, ConfirmationActivity.class);
 	      	 setintent.putExtra("confirmstring",stringform);
 			setintent.putExtra("usern", str_usern);
+
+			long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
+			CSVeditor.shared().recordTimeStamp(timeSpent, 7);
+
 	      	 startActivity(setintent);
 		}
 		if(flag == false){
@@ -118,8 +122,10 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 		
 	@Override
 	public void onBackPressed() {
+
 	   Log.d("backButton", "onBackPressed Called");
 	  Intent setIntent = new Intent(RegistrationActivity.this, Activitytest.class);
+		setIntent.putExtra("usern",str_usern);
 	  setIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	   
 	   startActivity(setIntent);
@@ -127,6 +133,11 @@ public class RegistrationActivity extends Activity implements OnClickListener{
 	   
 	}
 
-
+	long startTime;
+	@Override
+	protected void onResume() {
+		super.onResume();
+		startTime = Calendar.getInstance().getTimeInMillis();
+	}
 }
 	
