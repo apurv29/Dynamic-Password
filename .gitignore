@@ -28,3 +28,6 @@ proguard/
 
 #Android Studio
 .idea/
+CodeToTxt.py
+numerical_code.txt
+numerical_codev1.txt
