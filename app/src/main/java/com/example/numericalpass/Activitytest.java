@@ -1,21 +1,20 @@
 package com.example.numericalpass;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Random;
-import net.objecthunter.exp4j.Expression;
-import net.objecthunter.exp4j.ExpressionBuilder;
-import net.objecthunter.exp4j.operator.Operator;
 import android.app.Activity;
-import android.os.Bundle;
 import android.content.Intent;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
+import net.objecthunter.exp4j.operator.Operator;
+
+import java.util.Calendar;
+import java.util.Random;
 
 public class Activitytest extends Activity{
 
@@ -31,15 +30,15 @@ public class Activitytest extends Activity{
 	int num, lenother, result2;
 	TextView form1,form2, form3;
 	int count = 0;
-	BigDecimal roundOff;
 	OpExtend mydiv, mymul, mysqroot, mypow, mymod;
 
-	double resultdiv,resultmul,resultsqroot,result1,res;
+	double result1,res;
 
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.first_layout);
+
 		bdone=(Button) findViewById(R.id.bdone);
 		form1 = (TextView) findViewById(R.id.form1);
 		form2 = (TextView) findViewById(R.id.form2);
@@ -47,15 +46,14 @@ public class Activitytest extends Activity{
 		edittext = (EditText) findViewById(R.id.edittext);
 
 		iusern=getIntent();
-
 		str_usern = iusern.getStringExtra("usern");
 
 		form1.setCompoundDrawablesWithIntrinsicBounds(
 				R.drawable.form1, 0, 0, 0);
+
 		bdone.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
 
 				strfirst = edittext.getText().toString();
 
@@ -96,24 +94,19 @@ public class Activitytest extends Activity{
 					}
 				}
 				if (check == false) {
-					System.out.println("invalid");
 					Toast.makeText(getApplicationContext(), "invalid string !!", Toast.LENGTH_SHORT).show();
 				} else {
 					str = strfirst.replaceAll("\\s+", "");
-					System.out.println(str);
 					int len = str.length();
 					int g = 0;
 
 					while (g < len) {
-
 						if (str.charAt(g) >= 97 && str.charAt(g) <= 122) {
 							count++;
-
 						}
-
 						g++;
-
 					}
+
 					lenother = count;
 					Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
 					int i = 0;
@@ -125,19 +118,12 @@ public class Activitytest extends Activity{
 						for (i = 0; i <= len - 1; i++) {
 
 							arraystring[i] = str.charAt(i);
-
-							System.out.println("hi from i");
-							System.out.println(i);
-							System.out.println("array string : " + arraystring[i]);
-
-
 							Random r = new Random();
 							int maximum = 57;
 							int minimum = 49;
 							int range = maximum - minimum + 1;
 							num = r.nextInt(range) + minimum;
 
-							System.out.println("inside loop");
 							if (arraystring[i] >= 97 && arraystring[i] <= 122)
 
 							{
@@ -147,9 +133,6 @@ public class Activitytest extends Activity{
 									arrayvariables[j] = arraystring[i];
 									temp[j] = arrayvariables[j];
 									temp[j] = (char) (num);
-									System.out.println("after array");
-									System.out.println(arrayvariables[j]);
-									System.out.println(temp[j]);
 									j++;
 								}
 
@@ -160,8 +143,6 @@ public class Activitytest extends Activity{
 
 								arraystring[i] = (char) (num);
 
-								System.out.println(num);
-								System.out.println(arraystring[i]);
 							} else {
 								switch (arraystring[i]) {
 									case 1:
@@ -208,20 +189,14 @@ public class Activitytest extends Activity{
 					for (int l = 0; l < str.length(); l++) {
 						if (str.charAt(l) == '\u221A' || str.charAt(l) == '\u00D7' || str.charAt(l) == '\u00F7' || str.charAt(l) == '\u005E' || str.charAt(l) == '%') {
 							gone = false;
-							System.out.println("hello from extra");
 						}
 					}
 					if (i == str.length()) {
 						evaluate = new String(arraystring);
 						for (int w = 0; w < str.length(); w++) {
 							if (str.charAt(w) == '\u03C0') {
-								System.out.println("hello from pi");
-								//	double varpi = 22/7;
 								String pi = "3.14";
-
-								System.out.println("value of char pi" + pi);
 								evaluate = evaluate.replace("\u03C0", pi);
-								System.out.println("value of evaluate after pi" + evaluate);
 							}
 						}
 
@@ -231,19 +206,11 @@ public class Activitytest extends Activity{
 
 								Expression calc = new ExpressionBuilder(evaluate).build();
 
-								Log.d("Mainhere", Arrays.toString(arrayvariables));
 								result1 = calc.evaluate();
-								//result1 =Math.round(Double.parseDouble(new DecimalFormat("##.##").format(result1)));
-								//BigDecimal a = new BigDecimal(result1);
-								//roundOff = a.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-								//System.out.println(roundOff);
 								result1 = (double) Math.round(result1 * 100) / 100;
-								System.out.println("result1: " + result1);
-								System.out.println("result2: " + result2);
-
 								checkisvalid = true;
+
 							} catch (Exception e) {
-								;
 								Toast.makeText(getApplicationContext(), "not allowed", Toast.LENGTH_SHORT).show();
 								checkisvalid = false;
 							}
@@ -275,11 +242,7 @@ public class Activitytest extends Activity{
 										Toast.makeText(getApplicationContext(), "invalid string !!", Toast.LENGTH_SHORT).show();
 									}
 
-
 									result1 = (double) Math.round(res * 100) / 100;
-									// BigDecimal a = new BigDecimal(res);
-									//roundOff = a.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-									//double roundOff = (double) Math.round(a * 100) / 100;
 								}
 
 
@@ -297,7 +260,6 @@ public class Activitytest extends Activity{
 							setintent.putExtra("values", temp);
 							setintent.putExtra("result", result1);
 
-							System.out.println("res: " + result1);
 							setintent.putExtra("result2", result2);
 							setintent.putExtra("usern", str_usern);
 
@@ -305,9 +267,6 @@ public class Activitytest extends Activity{
 							int templen = temp.length;
 							for (int p = 0; p <= templen - 1; p++) {
 								u = arrayvariables[p] + "=" + temp[p];
-
-
-								System.out.println(u);
 								h = h.concat("\n" + u);
 
 							}
@@ -330,7 +289,6 @@ public class Activitytest extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				//DO you work
 				edittext.setText("(a+b)^2", TextView.BufferType.EDITABLE);
 			}
 		});
@@ -339,7 +297,6 @@ public class Activitytest extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				//DO you work
 				edittext.setText("(a*b-c)/d", TextView.BufferType.EDITABLE);
 			}
 		});
@@ -347,7 +304,6 @@ public class Activitytest extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				//DO you work
 				edittext.setText("2*(a-b)", TextView.BufferType.EDITABLE);
 			}
 		});
@@ -363,9 +319,7 @@ public class Activitytest extends Activity{
 
 	@Override
 	public void onBackPressed() {
-
 		Toast.makeText(Activitytest.this, "Please complete the signUp process", Toast.LENGTH_SHORT).show();
-
 	}
 }
 	

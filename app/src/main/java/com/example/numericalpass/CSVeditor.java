@@ -121,6 +121,8 @@ public class CSVeditor {
                 cell.setCellValue("understand");
                 cell = row.createCell(13);
                 cell.setCellValue("remember");
+                cell = row.createCell(14);
+                cell.setCellValue("time_on_instructions_activity");
 
             } else {
                 Log.v("dks","sheet present");
@@ -165,6 +167,8 @@ public class CSVeditor {
         cell.setCellValue("-");
         cell = row.createCell(13);
         cell.setCellValue("-");
+        cell = row.createCell(14);
+        cell.setCellValue("-");
         writeToWorkbook();
     }
 
@@ -200,6 +204,8 @@ public class CSVeditor {
         cell = currentRowHolder.createCell(12);
         cell.setCellValue("-");
         cell = currentRowHolder.createCell(13);
+        cell.setCellValue("-");
+        cell = currentRowHolder.createCell(14);
         cell.setCellValue("-");
         writeToWorkbook();
     }

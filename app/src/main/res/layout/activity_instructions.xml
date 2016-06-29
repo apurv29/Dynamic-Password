@@ -25,6 +25,7 @@
                 android:text="How to use the application"
                 android:textStyle="bold"
                 android:textAppearance="?android:attr/textAppearanceLarge"/>
+
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"

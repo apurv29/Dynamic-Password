@@ -5,22 +5,11 @@ package com.example.numericalpass;
  */
 public class User {
     //private variables
-    int id;
     String username;
     String password;
-    int wrongtry;
 
     // Empty constructor
     public User() {
-    }
-    // getting ID
-    public int getID(){
-        return this.id;
-    }
-
-    // setting id
-    public void setID(int id){
-        this.id = id;
     }
 
     // getting username

@@ -59,7 +59,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        System.out.println("username1: "+ user.getUsername());
         boolean exists = getUserByName(user.getUsername());
         if(!exists) {
             values.put(KEY_USERNAME, user.getUsername()); // Contact Name
@@ -68,25 +67,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.insert(TABLE_NUMPIN, null, values);
         System.out.println("inserted successfully");
        }
-        db.close(); // Closing database connection
+        db.close();
     }
 
     public boolean getUserByName(String username) {
 
         SQLiteDatabase db = this.getReadableDatabase();
-        System.out.println("username: "+ username);
         Cursor cursor = db.query(TABLE_NUMPIN,
                 new String[]{KEY_USERNAME},
                 KEY_USERNAME + " = ? ",
                 new String[]{username},
                 null, null, null, null);
 
-        if(cursor.moveToFirst()) {
-            System.out.println("cursor: "+ cursor);
-            return true; //row exists
-        }
-        else
-            return false;
+        return cursor.moveToFirst();
     }
 
 
@@ -100,8 +93,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         String pass = new String((cursor.getString(2)));
-        //System.out.println("usern db: "+ usern);
-        // return contact
         return pass;
 
     }
@@ -110,9 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_WRONGTRY, wrongtry);
-       // values.put(KEY_STATUS, todo.getStatus());
         System.out.println("wrontrydb: "+ wrongtry);
-        // updating row
         return db.update(TABLE_NUMPIN, values, KEY_USERNAME + " = ?",
                 new String[] { username });
 

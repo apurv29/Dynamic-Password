@@ -6,115 +6,127 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="20dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="2dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="30dp" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rating "
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <RatingBar
-            android:id="@+id/rating_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:stepSize="1.0"
-            android:scaleX="0.8"
-            android:scaleY="0.8"
-            android:rating="3.0"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="20dp"/>
 
-    </LinearLayout>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Memory Burden "
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rating "
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-        <Spinner
-            android:id="@+id/spn_memory_burden"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/arr_memory_burden"
-            android:prompt="@string/spn_memory_burden"/>
+                <RatingBar
+                    android:id="@+id/rating_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:stepSize="1.0"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:rating="3.0"/>
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Easy/difficult to understand "
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Memory Burden "
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-        <Spinner
-            android:id="@+id/spn_understand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:prompt="@string/spn_understand"
-            android:entries="@array/arr_understand"/>
+                <Spinner
+                    android:id="@+id/spn_memory_burden"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/arr_memory_burden"
+                    android:prompt="@string/spn_memory_burden"/>
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Easy or difficult to remember "
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Easy/difficult to understand "
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
 
-        <Spinner
-            android:id="@+id/spn_remember"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/arr_remember"
-            android:prompt="@string/spn_remember"/>
+                <Spinner
+                    android:id="@+id/spn_understand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:prompt="@string/spn_understand"
+                    android:entries="@array/arr_understand"/>
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_submit_feedback"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Submit"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Easy or difficult to remember "
+                    android:textAppearance="?android:attr/textAppearanceMedium"/>
 
+                <Spinner
+                    android:id="@+id/spn_remember"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/arr_remember"
+                    android:prompt="@string/spn_remember"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_submit_feedback"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Submit"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

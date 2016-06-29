@@ -62,23 +62,17 @@ public class WelcomeActivity extends ActionBarActivity {
                 String understand = spnUnderstand.getSelectedItem().toString();
                 String remember = spnRemember.getSelectedItem().toString();
 
-                Log.v(TAG,"rating: "+rating+" memoryBurden: "+memoryBurden+
-                        " understand: "+understand+" remember: "+remember);
-
                 CSVeditor.shared().insertFeedback(rating, memoryBurden, understand, remember);
 
                 scheduleNotification(getNotification("Its time to login using "+userName), 10000);
-
                 submitPressed = true;
-
                 onBackPressed();
             }
         });
-
     }
+
     @Override
     public void onBackPressed() {
-
         if(submitPressed) {
             finish();
             Intent intent = new Intent(WelcomeActivity.this, UsernameActivity.class);
@@ -101,7 +95,6 @@ public class WelcomeActivity extends ActionBarActivity {
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
     }
 
-
     private Notification getNotification(String content) {
 
         Intent myIntent = new Intent(getApplicationContext(), UsernameActivity.class);
@@ -121,7 +114,4 @@ public class WelcomeActivity extends ActionBarActivity {
 
         return builder.build();
     }
-
-
-
 }

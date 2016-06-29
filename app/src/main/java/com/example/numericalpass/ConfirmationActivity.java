@@ -13,7 +13,7 @@ public class ConfirmationActivity extends Activity {
     private static final String TAG = ConfirmationActivity.class.getSimpleName();
 
 	Intent i,iusern;
-	String s,str,str_usern;
+	String s,str_usern;
 	TextView textv;
 	//SQLiteDatabase db;
 	User user = new User();
@@ -38,7 +38,6 @@ public class ConfirmationActivity extends Activity {
 			    
 				 s = i.getStringExtra("confirmstring");
 				 str_usern = iusern.getStringExtra("usern");
-				System.out.println(s);
 				 textv = (TextView)findViewById(R.id.textv);
 
 				DatabaseHelper db = new DatabaseHelper(this);
@@ -55,7 +54,9 @@ public class ConfirmationActivity extends Activity {
 
 		finish();
 		Intent intent = new Intent(ConfirmationActivity.this, UsernameActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);
+
 	}
 			
 

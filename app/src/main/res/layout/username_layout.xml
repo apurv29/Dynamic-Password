@@ -3,7 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <EditText
         android:id="@+id/username"
         android:layout_width="wrap_content"
@@ -22,10 +21,6 @@
         android:layout_below="@+id/username"
         android:layout_marginTop="360dp"
         android:layout_weight="1"
-        android:onClick="onClick"
         android:text="Continue" />
-
-    <!-- layout_marginTop = "360dp"-->
-
 
 </LinearLayout>
