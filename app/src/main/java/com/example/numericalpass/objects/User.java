@@ -1,4 +1,4 @@
-package com.example.numericalpass;
+package com.example.numericalpass.objects;
 
 /**
  * Created by Shreya Mehrishi on 12/13/2015.

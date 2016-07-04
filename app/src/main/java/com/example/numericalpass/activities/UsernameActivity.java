@@ -1,4 +1,4 @@
-package com.example.numericalpass;
+package com.example.numericalpass.activities;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -22,6 +22,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.numericalpass.R;
+import com.example.numericalpass.objects.User;
+import com.example.numericalpass.helper.CSVeditor;
+import com.example.numericalpass.helper.DatabaseHelper;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -69,6 +74,8 @@ public class UsernameActivity extends ActionBarActivity {
         final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyyhhmmss");
 
         db = new DatabaseHelper(this);
+
+        username.requestFocus();
 
         bcontinue.setOnClickListener(new View.OnClickListener() {
             @Override

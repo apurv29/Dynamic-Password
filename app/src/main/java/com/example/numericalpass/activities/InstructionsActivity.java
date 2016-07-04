@@ -1,7 +1,10 @@
-package com.example.numericalpass;
+package com.example.numericalpass.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+
+import com.example.numericalpass.R;
+import com.example.numericalpass.helper.CSVeditor;
 
 import java.util.Calendar;
 
@@ -20,11 +23,11 @@ public class InstructionsActivity extends ActionBarActivity {
         startTime = Calendar.getInstance().getTimeInMillis();
     }
 
+    public static long endTime;
     @Override
     protected void onPause() {
         super.onPause();
-        long endTime = Calendar.getInstance().getTimeInMillis() - startTime;
-        CSVeditor.shared().recordTimeStamp(endTime, 14);
+        endTime = Calendar.getInstance().getTimeInMillis() - startTime;
     }
 
     @Override

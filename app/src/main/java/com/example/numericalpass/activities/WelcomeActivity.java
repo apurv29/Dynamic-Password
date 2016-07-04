@@ -1,4 +1,4 @@
-package com.example.numericalpass;
+package com.example.numericalpass.activities;
 
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -14,6 +14,10 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.numericalpass.R;
+import com.example.numericalpass.helper.CSVeditor;
+import com.example.numericalpass.helper.NotificationPublisher;
 
 import java.util.Calendar;
 
@@ -63,8 +67,9 @@ public class WelcomeActivity extends ActionBarActivity {
                 String remember = spnRemember.getSelectedItem().toString();
 
                 CSVeditor.shared().insertFeedback(rating, memoryBurden, understand, remember);
+                CSVeditor.shared().recordTimeStamp(InstructionsActivity.endTime, 14);
 
-                scheduleNotification(getNotification("Its time to login using "+userName), 10000);
+                scheduleNotification(getNotification("Its time to login using "+userName), AlarmManager.INTERVAL_DAY);
                 submitPressed = true;
                 onBackPressed();
             }
@@ -83,7 +88,7 @@ public class WelcomeActivity extends ActionBarActivity {
         }
     }
 
-    private void scheduleNotification(Notification notification, int delay) {
+    private void scheduleNotification(Notification notification, long delay) {
 
         Intent notificationIntent = new Intent(this, NotificationPublisher.class);
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
@@ -110,7 +115,7 @@ public class WelcomeActivity extends ActionBarActivity {
         builder.setAutoCancel(true);
         builder.setDefaults(Notification.DEFAULT_ALL);
         builder.setContentText(content);
-        builder.setSmallIcon(R.drawable.ic_launcher);
+        builder.setSmallIcon(R.mipmap.ic_launcher);
 
         return builder.build();
     }

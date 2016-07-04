@@ -1,4 +1,4 @@
-package com.example.numericalpass;
+package com.example.numericalpass.activities;
 
 import net.objecthunter.exp4j.operator.Operator;
 

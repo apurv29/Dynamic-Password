@@ -1,4 +1,4 @@
-package com.example.numericalpass;
+package com.example.numericalpass.helper;
 
 import android.app.Notification;
 import android.app.NotificationManager;

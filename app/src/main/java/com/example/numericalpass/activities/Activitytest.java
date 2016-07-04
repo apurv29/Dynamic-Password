@@ -1,4 +1,4 @@
-package com.example.numericalpass;
+package com.example.numericalpass.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.numericalpass.R;
+import com.example.numericalpass.helper.CSVeditor;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;

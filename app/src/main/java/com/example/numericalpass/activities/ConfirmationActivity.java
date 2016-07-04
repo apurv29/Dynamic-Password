@@ -1,10 +1,15 @@
-package com.example.numericalpass;
+package com.example.numericalpass.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+
+import com.example.numericalpass.R;
+import com.example.numericalpass.objects.User;
+import com.example.numericalpass.helper.CSVeditor;
+import com.example.numericalpass.helper.DatabaseHelper;
 
 import java.util.Calendar;
 
@@ -15,7 +20,6 @@ public class ConfirmationActivity extends Activity {
 	Intent i,iusern;
 	String s,str_usern;
 	TextView textv;
-	//SQLiteDatabase db;
 	User user = new User();
 
     // for recording the time user takes to signup : end time

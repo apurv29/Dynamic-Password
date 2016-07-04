@@ -8,6 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username"
+        android:inputType="text"
         android:layout_gravity="center_vertical|center_horizontal|center"
         android:hint="Enter username"
         android:layout_marginTop="30dp"
@@ -15,7 +16,7 @@
 
     <Button
         android:id="@+id/bcontinue"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/username"
         android:layout_below="@+id/username"
