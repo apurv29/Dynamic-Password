@@ -203,11 +203,13 @@ public class UsernameActivity extends ActionBarActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode != REQUEST_CODE) {
             Log.e(TAG, "Unknown request code: " + requestCode);
+            finish();
             return;
         }
         if (resultCode != RESULT_OK) {
             Toast.makeText(this,
                     "Screen Cast Permission Denied", Toast.LENGTH_SHORT).show();
+            finish();
             return;
         }
         mediaProjectionCallback = new MediaProjectionCallback();
