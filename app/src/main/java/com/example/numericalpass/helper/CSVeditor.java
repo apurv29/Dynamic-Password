@@ -114,14 +114,18 @@ public class CSVeditor {
                 cell = row.createCell(9);
                 cell.setCellValue("total_time_spent");
                 cell = row.createCell(10);
-                cell.setCellValue("rating");
+                cell.setCellValue("ease_to_remember");
                 cell = row.createCell(11);
-                cell.setCellValue("memory_burden");
+                cell.setCellValue("ease_of_registration");
                 cell = row.createCell(12);
-                cell.setCellValue("understand");
+                cell.setCellValue("ease_of_login");
                 cell = row.createCell(13);
-                cell.setCellValue("remember");
+                cell.setCellValue("intuitivity");
                 cell = row.createCell(14);
+                cell.setCellValue("feedback");
+                cell = row.createCell(15);
+                cell.setCellValue("overall_rating");
+                cell = row.createCell(16);
                 cell.setCellValue("time_on_instructions_activity");
 
             } else {
@@ -169,6 +173,10 @@ public class CSVeditor {
         cell.setCellValue("-");
         cell = row.createCell(14);
         cell.setCellValue("-");
+        cell = row.createCell(15);
+        cell.setCellValue("-");
+        cell = row.createCell(16);
+        cell.setCellValue("-");
         writeToWorkbook();
     }
 
@@ -207,6 +215,10 @@ public class CSVeditor {
         cell.setCellValue("-");
         cell = currentRowHolder.createCell(14);
         cell.setCellValue("-");
+        cell = currentRowHolder.createCell(15);
+        cell.setCellValue("-");
+        cell = currentRowHolder.createCell(16);
+        cell.setCellValue("-");
         writeToWorkbook();
     }
 
@@ -224,15 +236,19 @@ public class CSVeditor {
         writeToWorkbook();
     }
 
-    public void insertFeedback(int rating, String memoryBurden, String understand, String remember) {
+    public void insertFeedback(int easeToRemember, int easeOfRegistration, int easeOfLogin, int intuitivity, String feedback, int overall) {
         Cell cell = sheet.getRow(currentRow+1).getCell(10);
-        cell.setCellValue(rating);
+        cell.setCellValue(easeToRemember);
         cell = sheet.getRow(currentRow+1).getCell(11);
-        cell.setCellValue(memoryBurden);
+        cell.setCellValue(easeOfRegistration);
         cell = sheet.getRow(currentRow+1).getCell(12);
-        cell.setCellValue(understand);
+        cell.setCellValue(easeOfLogin);
         cell = sheet.getRow(currentRow+1).getCell(13);
-        cell.setCellValue(remember);
+        cell.setCellValue(intuitivity);
+        cell = sheet.getRow(currentRow+1).getCell(14);
+        cell.setCellValue(feedback);
+        cell = sheet.getRow(currentRow+1).getCell(15);
+        cell.setCellValue(overall);
     }
 
     public void writeToWorkbook() {

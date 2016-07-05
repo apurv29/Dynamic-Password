@@ -81,4 +81,25 @@
         <item>Difficult</item>
     </string-array>
 
+    <string name="title_feedback_activity">Feedback Form</string>
+
+    <string name="tv_feedback_ease_to_remember">How easy is to remember the password</string>
+    <string name="tv_feeback_ease_of_registration">Ease of registration</string>
+    <string name="tv_feedback_ease_of_login">Ease of login</string>
+    <string name="tv_feedback_intuitivity">How intuitive is the password scheme</string>
+    <string name="tv_feedback_other_suggestion">Any other suggestion</string>
+    <string name="tv_feedback_overall_rating">Overall rating</string>
+
+    <string name="tv_easy">Easy</string>
+    <string name="tv_difficult">Hard</string>
+    <string name="tv_low">Low</string>
+    <string name="tv_high">High</string>
+
+    <string name="tv_intuitive_low">Not so\nintuitive</string>
+    <string name="tv_intuitive_high">Very\nintuitive</string>
+
+    <string name="et_feedback_suggestion">Write your thoughts</string>
+
+    <string name="btn_submit">Submit</string>
+
 </resources>

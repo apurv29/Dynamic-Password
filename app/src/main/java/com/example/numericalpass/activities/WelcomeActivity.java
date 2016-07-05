@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -28,10 +29,12 @@ public class WelcomeActivity extends ActionBarActivity {
     public long endLoginTime;
 
     private Button btnSubmit;
-    private RatingBar ratingBar;
-    private Spinner spnMemoryBurden;
-    private Spinner spnUnderstand;
-    private Spinner spnRemember;
+    private RatingBar rbEaseToRemember;
+    private RatingBar rbEaseOfRegistration;
+    private RatingBar rbEaseOfLogin;
+    private RatingBar rbIntuitivity;
+    private EditText etFeedback;
+    private RatingBar rbOverall;
 
     boolean submitPressed = false;
 
@@ -41,10 +44,12 @@ public class WelcomeActivity extends ActionBarActivity {
         setContentView(R.layout.activity_welcome);
 
         btnSubmit = (Button) findViewById(R.id.btn_submit_feedback);
-        ratingBar = (RatingBar) findViewById(R.id.rating_bar);
-        spnMemoryBurden = (Spinner) findViewById(R.id.spn_memory_burden);
-        spnUnderstand = (Spinner) findViewById(R.id.spn_understand);
-        spnRemember = (Spinner) findViewById(R.id.spn_remember);
+        rbEaseToRemember = (RatingBar) findViewById(R.id.rb_ease_to_remember);
+        rbEaseOfRegistration = (RatingBar) findViewById(R.id.rb_ease_of_registration);
+        rbEaseOfLogin = (RatingBar) findViewById(R.id.rb_ease_of_login);
+        rbIntuitivity = (RatingBar) findViewById(R.id.rb_intuitivity);
+        etFeedback = (EditText) findViewById(R.id.et_feedback);
+        rbOverall = (RatingBar) findViewById(R.id.rb_overall);
 
         final String userName = getIntent().getStringExtra("USERNAME");
 
@@ -61,13 +66,8 @@ public class WelcomeActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                int rating = (int) ratingBar.getRating();
-                String memoryBurden = spnMemoryBurden.getSelectedItem().toString();
-                String understand = spnUnderstand.getSelectedItem().toString();
-                String remember = spnRemember.getSelectedItem().toString();
-
-                CSVeditor.shared().insertFeedback(rating, memoryBurden, understand, remember);
-                CSVeditor.shared().recordTimeStamp(InstructionsActivity.endTime, 14);
+                CSVeditor.shared().insertFeedback(rbEaseToRemember.getNumStars(), rbEaseOfRegistration.getNumStars(), rbEaseOfLogin.getNumStars(), rbIntuitivity.getNumStars(), etFeedback.getText().toString(), rbOverall.getNumStars());
+                CSVeditor.shared().recordTimeStamp(InstructionsActivity.endTime, 16);
 
                 scheduleNotification(getNotification("Its time to login using "+userName), AlarmManager.INTERVAL_DAY);
                 submitPressed = true;
