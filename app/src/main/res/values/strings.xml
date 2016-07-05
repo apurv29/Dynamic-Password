@@ -51,7 +51,7 @@
     <string name="title_activity_username">UsernameActivity</string>
     <string name="title_activity_database_helper">DatabaseHelper</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_welcome">Feedback</string>
     <string name="instuctions">1. Use any username for signup process in main page
         \n2. Enter any formula that you can remember according to your ease or select from given examples
         \n3. Put the given numbers in your formula and click check to first check the formula

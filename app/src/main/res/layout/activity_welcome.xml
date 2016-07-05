@@ -17,8 +17,7 @@
             android:text="@string/title_feedback_activity"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="20dp"/>
+            android:textColor="@android:color/black" />
 
         <View
             android:layout_width="wrap_content"
