@@ -1,4 +1,4 @@
-package com.example.numericalpass;
+package com.example.numericalpass.activities;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -22,6 +22,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.numericalpass.R;
+import com.example.numericalpass.objects.User;
+import com.example.numericalpass.helper.CSVeditor;
+import com.example.numericalpass.helper.DatabaseHelper;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -70,67 +75,62 @@ public class UsernameActivity extends ActionBarActivity {
 
         db = new DatabaseHelper(this);
 
+        username.requestFocus();
+
         bcontinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 final String u = username.getText().toString();
-                System.out.println("u: " + u);
                 if (!(u.equals(""))){
                     user.setUsername(u);
-                // db.addUsername(user);
+                    if (!(db.getUserByName(u))) {
 
-                // DatabaseHelper db = new DatabaseHelper(Context);
-                if (!(db.getUserByName(u))) {
+                        String timeStamp = simpleDateFormat.format(new Date());
 
-                    Log.v(TAG,"New user");
+                        String location = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                                "/UserStudyFramework/"+
+                                u+ "_"+timeStamp+
+                                "_num_sign_up.mp4";
 
-                    String timeStamp = simpleDateFormat.format(new Date());
+                        initRecorder(location);
 
-                    String location = Environment.getExternalStorageDirectory().getAbsolutePath() +
-                            "/UserStudyFramework/"+
-                            u+ "_"+timeStamp+
-                            "_num_sign_up.mp4";
+                        Toast.makeText(UsernameActivity.this, "started", Toast.LENGTH_SHORT).show();
+                        shareScreen();
 
-                    initRecorder(location);
+                        Intent intent = new Intent();
+                        intent.setClass(UsernameActivity.this, Activitytest.class);
+                        intent.putExtra("usern", u);
 
-                    Toast.makeText(UsernameActivity.this, "started", Toast.LENGTH_SHORT).show();
-                    shareScreen();
+                        long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
+                        CSVeditor.shared().insertNewUser(u, u+"_"+timeStamp+"_num_sign_up.mp4", timeSpent);
 
-                    Intent intent = new Intent();
-                    intent.setClass(UsernameActivity.this, Activitytest.class);
-                    intent.putExtra("usern", u);
+                        startActivity(intent);
+                    }
+                    else {
 
-                    long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
-                    CSVeditor.shared().insertNewUser(u, u+"_"+timeStamp+"_num_sign_up.mp4", timeSpent);
+                        String timeStamp = simpleDateFormat.format(new Date());
 
-                    startActivity(intent);
+                        String location = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                                "/UserStudyFramework/"+
+                                u+ "_"+timeStamp+
+                                "_num_sign_in.mp4";
+
+                        initRecorder(location);
+
+                        shareScreen();
+
+                        Toast.makeText(getApplicationContext(), "Login!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        intent.setClass(UsernameActivity.this, LoginActivity.class);
+                        intent.putExtra("usern", u);
+
+                        long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
+                        CSVeditor.shared().insertSignInLog(u, u+"_"+timeStamp+"_num_sign_in.mp4",timeSpent);
+
+                        startActivity(intent);
+                    }
                 }
-                else {
-                    Log.v(TAG,"Old user");
-
-                    String timeStamp = simpleDateFormat.format(new Date());
-
-                    String location = Environment.getExternalStorageDirectory().getAbsolutePath() +
-                            "/UserStudyFramework/"+
-                            u+ "_"+timeStamp+
-                            "_num_sign_in.mp4";
-
-                    initRecorder(location);
-
-                    shareScreen();
-
-                    Toast.makeText(getApplicationContext(), "Login!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent();
-                    intent.setClass(UsernameActivity.this, LoginActivity.class);
-                    intent.putExtra("usern", u);
-
-                    long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
-                    CSVeditor.shared().insertSignInLog(u, u+"_"+timeStamp+"_num_sign_in.mp4",timeSpent);
-
-                    startActivity(intent);
-                }
-            }
                 else{
                     Toast.makeText(getApplicationContext(), "Enter a username!!", Toast.LENGTH_SHORT).show();
                 }
@@ -192,7 +192,6 @@ public class UsernameActivity extends ActionBarActivity {
         @Override
         public void onStop() {
             if(false) {
-                //toggleButton.setChecked(false);
                 mediaRecorder.stop();
                 mediaRecorder.reset();
                 Log.v(TAG,"Recording Stopped");
@@ -204,11 +203,13 @@ public class UsernameActivity extends ActionBarActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode != REQUEST_CODE) {
             Log.e(TAG, "Unknown request code: " + requestCode);
+            finish();
             return;
         }
         if (resultCode != RESULT_OK) {
             Toast.makeText(this,
                     "Screen Cast Permission Denied", Toast.LENGTH_SHORT).show();
+            finish();
             return;
         }
         mediaProjectionCallback = new MediaProjectionCallback();
@@ -223,10 +224,7 @@ public class UsernameActivity extends ActionBarActivity {
 
     private VirtualDisplay createVirtualDisplay() {
         if(mediaProjection == null) {
-            Log.v(TAG,"null");
         }
-        else
-            Log.v(TAG,"not null");
 
         return mediaProjection.createVirtualDisplay("UsernameActivity",
                 DISPLAY_WIDTH, DISPLAY_HEIGHT, screenDensity,

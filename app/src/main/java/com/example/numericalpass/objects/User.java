@@ -1,26 +1,15 @@
-package com.example.numericalpass;
+package com.example.numericalpass.objects;
 
 /**
  * Created by Shreya Mehrishi on 12/13/2015.
  */
 public class User {
     //private variables
-    int id;
     String username;
     String password;
-    int wrongtry;
 
     // Empty constructor
     public User() {
-    }
-    // getting ID
-    public int getID(){
-        return this.id;
-    }
-
-    // setting id
-    public void setID(int id){
-        this.id = id;
     }
 
     // getting username

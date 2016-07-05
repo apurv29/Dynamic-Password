@@ -1,4 +1,4 @@
-package com.example.numericalpass;
+package com.example.numericalpass.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.numericalpass.R;
+import com.example.numericalpass.helper.CSVeditor;
+import com.example.numericalpass.helper.DatabaseHelper;
 
 import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
@@ -28,7 +32,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     boolean checkisvalid = false;
     String u="";
     String h="";
-    TextView tvlogin,tv1login;
+    TextView tv1login;
     Button blogin;
     boolean flag = false;
     EditText etlogin;
@@ -42,10 +46,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         str_usern = iusern.getStringExtra("usern");
 
        String spass =  db.getPassByName(str_usern);
-        System.out.println("pass: "+spass);
        str = spass.replaceAll("\\s+","");
-        //str="a+b";
-        System.out.println(str);
         int len = str.length();
         int g =0;
         blogin=(Button)findViewById(R.id.blogin);
@@ -55,13 +56,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
             if(str.charAt(g) >= 97 && str.charAt(g)<=122) {
                 count++;
-
             }
             g++;
-
         }
         lenother = count;
-      //  Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
         int i = 0;
         int j = 0;
         char[] arraystring= new char[len];
@@ -72,43 +70,24 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                 arraystring[i] = str.charAt(i);
 
-                System.out.println("hi from i");
-                System.out.println(i);
-                System.out.println(arraystring[i]);
-
-
                 Random r = new Random();
                 int maximum = 57;
                 int minimum = 49;
                 int range = maximum - minimum + 1;
                 num = r.nextInt(range)+minimum;
-
-                System.out.println("inside loop");
                 if(arraystring[i]>=97 && arraystring[i] <=122)
-
                 {
-
                     if(j>=0){
 
                         arrayvariables[j]=arraystring[i];
                         temp[j]=arrayvariables[j];
                         temp[j]=(char)(num);
-                        System.out.println("after array");
-                        System.out.println(arrayvariables[j]);
-                        System.out.println(temp[j]);
                         j++;
                     }
-
-
-
                 }
 
                 if(arraystring[i]>=97 && arraystring[i] <=122){
-
                     arraystring[i]=(char)(num);
-
-                    System.out.println(num);
-                    System.out.println(arraystring[i]);
                 }
 
                 else{
@@ -158,39 +137,24 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         for(int l = 0; l< str.length(); l++){
             if(str.charAt(l)== '\u221A' || str.charAt(l)== '\u00D7' || str.charAt(l)== '\u00F7'){
                 gone = false;
-                System.out.println("hello from extra");
             }
         }
         if(i == str.length()){
             evaluate = new String(arraystring);
             for(int w = 0; w< str.length(); w++){
                 if(str.charAt(w)== '\u03C0'){
-                    System.out.println("hello from pi");
-
                     String pi = "3.14";
-                    System.out.println("value of char pi"+ pi);
                     evaluate= evaluate.replace("\u03C0", pi);
-                    System.out.println("value of evaluate after pi"+evaluate);
                 }
             }
 
             if(gone == true){
                 try{
-
-
                     Expression calc = new ExpressionBuilder(evaluate).build();
-
                     result1=calc.evaluate();
                     result1 = (double) Math.round(result1 * 100) / 100;
-                    System.out.println(result1);
-                    System.out.println(result2);
-
                     checkisvalid = true;
-                }
-
-                catch(Exception e){
-                    ;
-
+                } catch(Exception e){
                     checkisvalid = false;
                 }
             }
@@ -207,48 +171,23 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                                 .build()
                                 .evaluate();
                         checkisvalid = true;
-                       // result1=res;
                         result1 = (double) Math.round(result1 * 100) / 100;
                     }
-
-
                 }
-
             }
-
 
             if(checkisvalid == true){
                 result2 = (int)result1;
-                /*Intent setintent = new Intent();
-                setintent.setClass(Activitytest.this, RegistrationActivity.class);
-                setintent.putExtra("c",str);
-                setintent.putExtra("something", arrayvariables);
-                setintent.putExtra("values", temp);
-                setintent.putExtra("result", result1);
-                setintent.putExtra("result2", result2);
-                setintent.putExtra("usern", str_usern);*/
-
-
                 int templen = temp.length;
                 for(int p=0; p<= templen-1; p++){
                     u = arrayvariables[p] + "=" + temp[p];
-
-
-
-                    System.out.println(u);
                     h = h.concat("\n" + u);
 
                 }
                 tv1login=(TextView)findViewById(R.id.tv1login);
 
-
                 tv1login.setText("Substitute these variables in your formula: \n  " + h);
                 tv1login.setMovementMethod(new ScrollingMovementMethod());
-                //setintent.putExtra("getstring", h);
-
-
-
-                //startActivity(setintent);
             }
 
 
@@ -257,7 +196,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     }
     public void onClick(View v) {
-
 
         if (v == blogin) {
 
@@ -274,7 +212,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 CSVeditor.shared().recordTimeStamp(timeSpent, 8);
                 CSVeditor.shared().setSuccessLogin(true);
 
-                //intent.putExtra("usern", u);
                 startActivity(intent);
 
                 finish();
@@ -285,7 +222,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 if (wrongtry <= 3) {
                     Toast.makeText(getApplicationContext(), "Let's try again", Toast.LENGTH_SHORT).show();
                     flag = true;
-                    System.out.println("wrongtry: " + wrongtry);
                     db.updatewrongtry(str_usern, wrongtry);
                 } else {
                     Toast.makeText(getApplicationContext(), "Wrong !!", Toast.LENGTH_SHORT).show();
@@ -295,11 +231,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                     Intent intent = new Intent();
                     intent.setClass(LoginActivity.this, UsernameActivity.class);
-                    //intent.putExtra("usern", u);
                     CSVeditor.shared().setSuccessLogin(false);
-
                     startActivity(intent);
-                    //  Toast.makeText(getApplicationContext(), "Let's try again!!", Toast.LENGTH_SHORT).show();
                 }
             }
         }

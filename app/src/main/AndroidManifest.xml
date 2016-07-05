@@ -10,11 +10,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".UsernameActivity"
+            android:name=".activities.UsernameActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,54 +25,54 @@
         </activity>
 
         <activity
-            android:name=".Activitytest"
+            android:name=".activities.Activitytest"
             android:label="@string/app_name"
-            android:parentActivityName=".UsernameActivity"
+            android:parentActivityName=".activities.UsernameActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.numericalpass.UsernameActivity" />
+                android:value=".activities.UsernameActivity" />
         </activity>
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".UsernameActivity"
+            android:parentActivityName=".activities.UsernameActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.numericalpass.UsernameActivity" />
+                android:value=".activities.UsernameActivity" />
         </activity>
 
         <activity
-            android:name=".RegistrationActivity"
+            android:name=".activities.RegistrationActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".Activitytest"
+            android:parentActivityName=".activities.Activitytest"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.numericalpass.Activitytest" />
+                android:value=".activities.Activitytest" />
         </activity>
 
         <activity
-            android:name=".ConfirmationActivity"
+            android:name=".activities.ConfirmationActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".Activitytest"
+            android:parentActivityName=".activities.Activitytest"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.numericalpass.Activitytest" />
+                android:value=".activities.Activitytest" />
         </activity>
 
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".activities.WelcomeActivity"
             android:label="@string/title_activity_welcome"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".InstructionsActivity"
+        <activity android:name=".activities.InstructionsActivity"
             android:screenOrientation="portrait"/>
 
-        <receiver android:name=".NotificationPublisher"/>
+        <receiver android:name=".helper.NotificationPublisher"/>
 
     </application>
 
