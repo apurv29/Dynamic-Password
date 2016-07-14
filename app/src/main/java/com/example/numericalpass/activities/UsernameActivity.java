@@ -94,8 +94,6 @@ public class UsernameActivity extends ActionBarActivity {
                                 "_num_sign_up.mp4";
 
                         initRecorder(location);
-
-                        Toast.makeText(UsernameActivity.this, "started", Toast.LENGTH_SHORT).show();
                         shareScreen();
 
                         Intent intent = new Intent();
@@ -120,7 +118,6 @@ public class UsernameActivity extends ActionBarActivity {
 
                         shareScreen();
 
-                        Toast.makeText(getApplicationContext(), "Login!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent();
                         intent.setClass(UsernameActivity.this, LoginActivity.class);
                         intent.putExtra("usern", u);
@@ -150,7 +147,6 @@ public class UsernameActivity extends ActionBarActivity {
 
         switch (item.getItemId()) {
             case R.id.action_instructions:
-                Toast.makeText(UsernameActivity.this, "instructions", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(UsernameActivity.this, InstructionsActivity.class);
                 startActivity(intent);
                 return true;

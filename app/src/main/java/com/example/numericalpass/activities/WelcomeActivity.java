@@ -69,7 +69,7 @@ public class WelcomeActivity extends ActionBarActivity {
                 CSVeditor.shared().insertFeedback(rbEaseToRemember.getNumStars(), rbEaseOfRegistration.getNumStars(), rbEaseOfLogin.getNumStars(), rbIntuitivity.getNumStars(), etFeedback.getText().toString(), rbOverall.getNumStars());
                 CSVeditor.shared().recordTimeStamp(InstructionsActivity.endTime, 16);
 
-                scheduleNotification(getNotification("Its time to login using "+userName), AlarmManager.INTERVAL_DAY);
+                scheduleNotification(getNotification("Its time to login using "+userName), 7*AlarmManager.INTERVAL_DAY);
                 submitPressed = true;
                 onBackPressed();
             }
