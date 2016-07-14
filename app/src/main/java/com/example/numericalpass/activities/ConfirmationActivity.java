@@ -33,7 +33,6 @@ public class ConfirmationActivity extends Activity {
 
                 // insert time taken in signup process by user
                 long totalSignUpTime = endSignUpTime - UsernameActivity.startTime;
-                Log.v(TAG,"totalSignUpTime: "+totalSignUpTime);
 
 				CSVeditor.shared().recordTimeStamp(totalSignUpTime, 9);
 			    
