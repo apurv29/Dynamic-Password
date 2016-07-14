@@ -30,4 +30,5 @@ dependencies {
     compile 'com.android.support:support-v4:21.0.3'
     compile files('libs/exp4j-0.4.6-SNAPSHOT.jar')
     compile group: 'org.apache.poi', name: 'poi', version: '3.12'
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }

@@ -8,6 +8,7 @@ import android.hardware.display.VirtualDisplay;
 import android.media.MediaRecorder;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,6 +28,9 @@ import com.example.numericalpass.R;
 import com.example.numericalpass.objects.User;
 import com.example.numericalpass.helper.CSVeditor;
 import com.example.numericalpass.helper.DatabaseHelper;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -58,6 +62,11 @@ public class UsernameActivity extends ActionBarActivity {
 
     // for recording the time user takes to signup : start time
     public static long startTime;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,15 +91,15 @@ public class UsernameActivity extends ActionBarActivity {
             public void onClick(View v) {
 
                 final String u = username.getText().toString();
-                if (!(u.equals(""))){
+                if (!(u.equals(""))) {
                     user.setUsername(u);
                     if (!(db.getUserByName(u))) {
 
                         String timeStamp = simpleDateFormat.format(new Date());
 
                         String location = Environment.getExternalStorageDirectory().getAbsolutePath() +
-                                "/UserStudyFramework/"+
-                                u+ "_"+timeStamp+
+                                "/UserStudyFramework/" +
+                                u + "_" + timeStamp +
                                 "_num_sign_up.mp4";
 
                         initRecorder(location);
@@ -101,17 +110,16 @@ public class UsernameActivity extends ActionBarActivity {
                         intent.putExtra("usern", u);
 
                         long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
-                        CSVeditor.shared().insertNewUser(u, u+"_"+timeStamp+"_num_sign_up.mp4", timeSpent);
+                        CSVeditor.shared().insertNewUser(u, u + "_" + timeStamp + "_num_sign_up.mp4", timeSpent);
 
                         startActivity(intent);
-                    }
-                    else {
+                    } else {
 
                         String timeStamp = simpleDateFormat.format(new Date());
 
                         String location = Environment.getExternalStorageDirectory().getAbsolutePath() +
-                                "/UserStudyFramework/"+
-                                u+ "_"+timeStamp+
+                                "/UserStudyFramework/" +
+                                u + "_" + timeStamp +
                                 "_num_sign_in.mp4";
 
                         initRecorder(location);
@@ -123,16 +131,18 @@ public class UsernameActivity extends ActionBarActivity {
                         intent.putExtra("usern", u);
 
                         long timeSpent = Calendar.getInstance().getTimeInMillis() - startTime;
-                        CSVeditor.shared().insertSignInLog(u, u+"_"+timeStamp+"_num_sign_in.mp4",timeSpent);
+                        CSVeditor.shared().insertSignInLog(u, u + "_" + timeStamp + "_num_sign_in.mp4", timeSpent);
 
                         startActivity(intent);
                     }
-                }
-                else{
+                } else {
                     Toast.makeText(getApplicationContext(), "Enter a username!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -178,20 +188,15 @@ public class UsernameActivity extends ActionBarActivity {
         mediaRecorder = new MediaRecorder();
         mediaProjectionManager = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
 
-        if(mediaProjection == null) {
+        if (mediaProjection == null) {
             startActivityForResult(mediaProjectionManager.createScreenCaptureIntent(), REQUEST_CODE);
-            return;
         }
     }
 
     private class MediaProjectionCallback extends MediaProjection.Callback {
         @Override
         public void onStop() {
-            if(false) {
-                mediaRecorder.stop();
-                mediaRecorder.reset();
-                Log.v(TAG,"Recording Stopped");
-            }
+            Log.v(TAG, "Recording Stopped");
         }
     }
 
@@ -219,8 +224,6 @@ public class UsernameActivity extends ActionBarActivity {
     }
 
     private VirtualDisplay createVirtualDisplay() {
-        if(mediaProjection == null) {
-        }
 
         return mediaProjection.createVirtualDisplay("UsernameActivity",
                 DISPLAY_WIDTH, DISPLAY_HEIGHT, screenDensity,
@@ -246,8 +249,6 @@ public class UsernameActivity extends ActionBarActivity {
             int orientation = ORIENTATIONS.get(rotation + 90);
             mediaRecorder.setOrientationHint(orientation);
             mediaRecorder.prepare();
-        } catch (IOException | IllegalStateException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -255,9 +256,9 @@ public class UsernameActivity extends ActionBarActivity {
 
     public static void stopScreenSharing() {
 
-        Log.v(TAG,"Recording Stopped");
+        Log.v(TAG, "Recording Stopped");
 
-        if(virtualDisplay == null) {
+        if (virtualDisplay == null) {
             return;
         }
         virtualDisplay.release();
@@ -265,12 +266,12 @@ public class UsernameActivity extends ActionBarActivity {
     }
 
     private static void destroyMediaProjection() {
-        if(mediaProjection != null) {
+        if (mediaProjection != null) {
             mediaProjection.unregisterCallback(mediaProjectionCallback);
             mediaProjection.stop();
             mediaProjection = null;
         }
-        Log.v(TAG,"MediaProjection Stopped");
+        Log.v(TAG, "MediaProjection Stopped");
     }
 
     @Override
